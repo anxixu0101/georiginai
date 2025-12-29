@@ -359,9 +359,14 @@
       height:100%;
       object-fit:cover;
       display:block;
-      filter: grayscale(1) contrast(1.05);
-      opacity: .92;
-    }
+      filter: none;              /* 图片保持彩色 */
+      opacity: 1;
+      transition: transform .25s ease, box-shadow .25s ease;
+}
+.tMedia:hover .tImg{
+  transform: scale(1.02);    /* 轻微放大即可，高级但不浮夸 */
+}
+
 
     /* responsive */
     @media (max-width: 920px){
