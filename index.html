@@ -281,12 +281,96 @@
       text-transform:uppercase;
     }
 
+    /* Timeline */
+    .timeline{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .tItem{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      padding:16px;
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+    .tCol{padding:2px 2px}
+    .tDate{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(231,233,238,.82);
+      font-size:12px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      margin-bottom:8px;
+    }
+    .tTitle{
+      font-size:16px;
+      letter-spacing:-.2px;
+      margin-bottom:8px;
+    }
+    .tText{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.7;
+      max-width: 70ch;
+    }
+    .tMedia{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.16);
+      min-height: 140px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .tPh{
+      width:100%;
+      height:100%;
+      min-height:140px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(231,233,238,.55);
+      font-family: var(--mono);
+      font-size:12px;
+      letter-spacing:.4px;
+      border-radius: var(--radius);
+      background:
+        radial-gradient(500px 240px at 25% 30%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(500px 240px at 75% 60%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+    }
+    .tPh::before{
+      content: attr(data-ph);
+      padding: 10px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background: rgba(255,255,255,.03);
+    }
+    .tImg{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: grayscale(1) contrast(1.05);
+      opacity: .92;
+    }
+
     /* responsive */
     @media (max-width: 920px){
       .heroGrid{grid-template-columns:1fr; }
       .grid3{grid-template-columns:1fr; }
       .about{grid-template-columns:1fr; }
       .navlinks{display:none;}
+      .tItem{grid-template-columns:1fr;}
+      .tMedia{min-height:160px;}
     }
   </style>
 </head>
@@ -304,6 +388,7 @@
         <nav class="navlinks" aria-label="Primary">
           <a href="#product">Product</a>
           <a href="#principles">Principles</a>
+          <a href="#timeline">Timeline</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
         </nav>
@@ -424,6 +509,77 @@
     </div>
   </section>
 
+  <!-- Timeline -->
+  <section class="block" id="timeline">
+    <div class="wrap">
+      <div class="kicker">Timeline</div>
+
+      <div class="timeline" style="margin-top:12px;">
+        <!-- item 1 -->
+        <article class="tItem">
+          <div class="tCol">
+            <div class="tDate mono">2025.09</div>
+            <div class="tTitle">BioSense idea was born</div>
+            <div class="tText">
+              The initial concept for a contactless, desk-ready wellness device took shape.
+            </div>
+          </div>
+          <div class="tMedia">
+            <img class="tImg" src="/assets/images/2.jpg" alt="BioZero prototype">
+            <!-- Replace the placeholder with an actual image:
+            <img class="tImg" src="/assets/images/timeline-2025-09.jpg" alt="BioSense concept sketch">
+            -->
+          </div>
+        </article>
+
+        <!-- item 2 -->
+        <article class="tItem">
+          <div class="tCol">
+            <div class="tDate mono">2025.10</div>
+            <div class="tTitle">BioZero prototype completed</div>
+            <div class="tText">
+              The first working prototype, <strong>BioZero</strong>, was assembled to validate sensing and UX.
+            </div>
+          </div>
+          <div class="tMedia">
+            
+            <img class="tImg" src="/assets/images/1.jpg" alt="BioZero prototype">
+          </div>
+        </article>
+
+        <!-- item 3 -->
+        <article class="tItem">
+          <div class="tCol">
+            <div class="tDate mono">2025.11</div>
+            <div class="tTitle">First prototype shipped to Slovenia for testing</div>
+            <div class="tText">
+              We mailed the first BioZero unit to a community tester in Slovenia for real-world feedback.
+            </div>
+          </div>
+          <div class="tMedia">
+            
+            <img class="tImg" src="/assets/images/4.jpg" alt="BioZero shipped for testing">
+          </div>
+        </article>
+
+        <!-- item 4 -->
+        <article class="tItem">
+          <div class="tCol">
+            <div class="tDate mono">2025.12</div>
+            <div class="tTitle">BioSense redesign: form, algorithms, and structure</div>
+            <div class="tText">
+              We restarted industrial design and refined algorithms and internal structure to reach a cleaner, simpler product.
+            </div>
+          </div>
+          <div class="tMedia">
+            
+            <img class="tImg" src="/assets/images/3.jpg" alt="BioSense redesign">
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- About + Contact -->
   <section class="block" id="about">
     <div class="wrap">
@@ -459,6 +615,7 @@
         <div class="mono">
           <a href="#product">BioSense</a> ·
           <a href="#principles">Principles</a> ·
+          <a href="#timeline">Timeline</a> ·
           <a href="#contact">Contact</a>
         </div>
       </div>
