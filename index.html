@@ -1,12 +1,472 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Georigin AI</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GEORIGIN — Useful. Creative. Simple.</title>
+  <meta name="description" content="GEORIGIN builds useful, creative, simple products. BioSense: a desktop device that detects sedentary time without contact and shows heart rate." />
+  <meta name="theme-color" content="#0b0c0f" />
+
+  <!-- Optional: social preview -->
+  <meta property="og:title" content="GEORIGIN — Useful. Creative. Simple." />
+  <meta property="og:description" content="BioSense is coming soon: a desktop device that detects sedentary time without contact and shows heart rate." />
+  <meta property="og:type" content="website" />
+
+  <style>
+    :root{
+      --bg:#0b0c0f;
+      --panel:#0f1117;
+      --text:#e7e9ee;
+      --muted:#a9afbd;
+      --line:rgba(255,255,255,.10);
+      --line2:rgba(255,255,255,.18);
+      --chip:rgba(255,255,255,.06);
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+      --radius2: 22px;
+      --max: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, #06070a 0%, var(--bg) 65%, #07080b 100%);
+      color:var(--text);
+      letter-spacing:.2px;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(14px);
+      background: rgba(11,12,15,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      height:66px;
+    }
+    .brand{
+      display:flex; gap:12px; align-items:center;
+      font-weight:700;
+      letter-spacing:1.4px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.02));
+      border:1px solid var(--line2);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      position:relative;
+      overflow:hidden;
+    }
+    .logo:before{
+      content:"";
+      position:absolute; inset:-40%;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.25), transparent 55%);
+      transform: rotate(18deg);
+    }
+    .brand span.small{
+      font-family:var(--mono);
+      font-weight:600;
+      color:var(--muted);
+      letter-spacing:.6px;
+      font-size:12px;
+      margin-left:6px;
+    }
+    .navlinks{
+      display:flex; gap:18px; align-items:center;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .navlinks a{padding:10px 10px; border-radius:12px}
+    .navlinks a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .cta{
+      display:flex; gap:10px; align-items:center;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius:14px;
+      border:1px solid var(--line2);
+      background: rgba(255,255,255,.06);
+      color:var(--text);
+      font-size:14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      cursor:pointer;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.28)}
+    .btn.primary{
+      background: rgba(255,255,255,.92);
+      color:#0b0c0f;
+      border-color: rgba(255,255,255,.92);
+    }
+    .btn.primary:hover{background: rgba(255,255,255,1)}
+    .pill{
+      font-family:var(--mono);
+      font-size:12px;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      padding:6px 10px;
+      border-radius:999px;
+      display:inline-flex; gap:8px; align-items:center;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:50%;
+      background: rgba(255,255,255,.55);
+      box-shadow: 0 0 0 6px rgba(255,255,255,.06);
+    }
+
+    /* hero */
+    .hero{padding:64px 0 28px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .cardInner{padding:26px}
+    h1{
+      font-size: clamp(34px, 4.4vw, 54px);
+      margin:14px 0 10px;
+      line-height:1.05;
+      letter-spacing:-.6px;
+    }
+    .lead{
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.65;
+      margin:0 0 18px;
+      max-width: 62ch;
+    }
+    .tags{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin: 16px 0 20px;
+    }
+    .tag{
+      border:1px solid var(--line);
+      background: var(--chip);
+      color: var(--muted);
+      font-size:12px;
+      padding:8px 10px;
+      border-radius: 999px;
+      font-family:var(--mono);
+    }
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap}
+    .note{
+      margin-top:14px;
+      color: rgba(231,233,238,.75);
+      font-size:13px;
+      font-family:var(--mono);
+    }
+
+    /* right panel (product) */
+    .productHead{
+      display:flex; justify-content:space-between; align-items:flex-start; gap:14px;
+      margin-bottom:14px;
+    }
+    .productTitle{
+      display:flex; flex-direction:column; gap:6px;
+    }
+    .productTitle h2{
+      margin:0;
+      font-size:20px;
+      letter-spacing:-.2px;
+    }
+    .productTitle p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+    .mock{
+      margin-top:14px;
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    .specRow{
+      display:flex; justify-content:space-between; gap:16px;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(0,0,0,.12);
+    }
+    .specRow .k{
+      color:var(--muted);
+      font-size:12px;
+      font-family:var(--mono);
+    }
+    .specRow .v{
+      color:var(--text);
+      font-size:12px;
+      font-family:var(--mono);
+      text-align:right;
+    }
+    .divider{
+      height:1px; background: var(--line); margin: 18px 0;
+    }
+
+    /* sections */
+    section.block{padding: 22px 0}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.03);
+      padding:16px;
+    }
+    .mini h3{
+      margin:0 0 8px;
+      font-size:14px;
+      letter-spacing:.2px;
+    }
+    .mini p{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .about{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+
+    footer{
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size:13px;
+    }
+    .foot{
+      border-top:1px solid var(--line);
+      padding-top:18px;
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      align-items:center;
+    }
+    .foot a{color:var(--muted)}
+    .foot a:hover{color:var(--text)}
+    .mono{font-family:var(--mono)}
+    .kicker{
+      color:rgba(231,233,238,.85);
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+    }
+
+    /* responsive */
+    @media (max-width: 920px){
+      .heroGrid{grid-template-columns:1fr; }
+      .grid3{grid-template-columns:1fr; }
+      .about{grid-template-columns:1fr; }
+      .navlinks{display:none;}
+    }
+  </style>
 </head>
 <body>
-  <h1>Georigin AI</h1>
-  <p>Official website coming soon.</p>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          GEORIGIN <span class="small">useful • creative • simple</span>
+        </div>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#product">Product</a>
+          <a href="#principles">Principles</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="cta">
+          <a class="btn" href="#product">Explore BioSense</a>
+          <!-- Future: replace link with your checkout page -->
+          <a class="btn primary" href="#contact">Get Updates</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="heroGrid">
+        <!-- left -->
+        <div class="card">
+          <div class="cardInner">
+            <div class="pill"><span class="dot"></span> Building products that matter</div>
+            <h1>We don’t do flashy branding.<br/>We build things people actually use.</h1>
+            <p class="lead">
+              GEORIGIN is a product studio focused on simplicity and real-world utility.
+              Our ethos is straightforward: <strong>useful</strong>, <strong>creative</strong>, <strong>simple</strong>.
+            </p>
+
+            <div class="tags" aria-label="Tags">
+              <span class="tag">Minimal design</span>
+              <span class="tag">Practical innovation</span>
+              <span class="tag">Desk-ready hardware</span>
+              <span class="tag">Signal → insight</span>
+            </div>
+
+            <div class="heroActions">
+              <a class="btn primary" href="#product">Meet BioSense</a>
+              <a class="btn" href="#principles">Our principles</a>
+            </div>
+
+            <div class="note">
+              Status: <span style="color:#fff">BioSense launching soon</span> · Built by GEORIGIN
+            </div>
+          </div>
+        </div>
+
+        <!-- right -->
+        <aside class="card" id="product">
+          <div class="cardInner">
+            <div class="productHead">
+              <div class="productTitle">
+                <div class="kicker">First product</div>
+                <h2>BioSense</h2>
+                <p>
+                  A desktop device that senses sedentary behavior <strong>without contact</strong>,
+                  and displays <strong>heart rate</strong>.
+                </p>
+              </div>
+              <span class="pill mono">COMING SOON</span>
+            </div>
+
+            <div class="divider"></div>
+
+            <div class="mock">
+              <div class="specRow">
+                <div class="k k1">Function</div>
+                <div class="v">Sedentary detection (contactless)</div>
+              </div>
+              <div class="specRow">
+                <div class="k">Metric</div>
+                <div class="v">Heart rate display</div>
+              </div>
+              <div class="specRow">
+                <div class="k">Form</div>
+                <div class="v">Desk / workstation companion</div>
+              </div>
+              <div class="specRow">
+                <div class="k">Design</div>
+                <div class="v">Minimal, readable, calm</div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <p class="lead" style="font-size:14px; margin:0;">
+              BioSense helps you stay aware—quietly. It detects when you’ve been sitting too long
+              and keeps your heart rate visible at a glance.
+            </p>
+
+            <div class="heroActions" style="margin-top:14px;">
+              <!-- Replace with real links later -->
+              <a class="btn" href="#contact">Request launch notification</a>
+              <a class="btn" href="#about">Why we built it</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <!-- Principles -->
+  <section class="block" id="principles">
+    <div class="wrap">
+      <div class="kicker">Principles</div>
+      <div class="grid3" style="margin-top:12px;">
+        <div class="mini">
+          <h3>Useful</h3>
+          <p>We start from real constraints and real routines. No gimmicks—just outcomes you can feel.</p>
+        </div>
+        <div class="mini">
+          <h3>Creative</h3>
+          <p>Creativity is a tool, not decoration. We use it to remove friction and reveal clarity.</p>
+        </div>
+        <div class="mini">
+          <h3>Simple</h3>
+          <p>Simplicity is hard work. We ship interfaces that stay quiet and readable—every day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About + Contact -->
+  <section class="block" id="about">
+    <div class="wrap">
+      <div class="kicker">About</div>
+
+      <div class="about" style="margin-top:12px;">
+        <div class="mini">
+          <h3>GEORIGIN</h3>
+          <p>
+            We are a small team with a strong bias for engineering clarity.
+            We believe the best products earn trust through daily usefulness—not through loud marketing.
+          </p>
+        </div>
+
+        <div class="mini" id="contact">
+          <h3>Contact</h3>
+          <p>
+            For partnerships, press, or early access:
+            <br/><br/>
+            <span class="mono">Email:</span> <a href="mailto:georigin0101@gmail.com">georigin0101@gmail.com</a>
+            <br/>
+            <span class="mono">Updates:</span> <a href="#" onclick="alert('Replace this with your signup form link later.'); return false;">Join launch list</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>© <span id="y"></span> GEORIGIN. All rights reserved.</div>
+        <div class="mono">
+          <a href="#product">BioSense</a> ·
+          <a href="#principles">Principles</a> ·
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
