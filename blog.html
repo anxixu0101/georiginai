@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GEORIGIN Blog</title>
+  <meta name="description" content="Build logs, notes, and field reports from GEORIGIN." />
+  <meta name="theme-color" content="#0b0c0f" />
+
+  <style>
+    /* 直接复用你 index 的 CSS（精简：保留核心变量 + 卡片系统 + timeline样式） */
+    :root{
+      --bg:#0b0c0f; --text:#e7e9ee; --muted:#a9afbd;
+      --line:rgba(255,255,255,.10); --line2:rgba(255,255,255,.18);
+      --chip:rgba(255,255,255,.06); --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --radius: 18px; --radius2: 22px; --max: 1100px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(900px 500px at 80% 20%, rgba(255,255,255,.06), transparent 60%),
+        linear-gradient(180deg, #06070a 0%, var(--bg) 65%, #07080b 100%);
+      color:var(--text);
+      letter-spacing:.2px;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .topbar{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(14px);
+      background: rgba(11,12,15,.55);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex; align-items:center; justify-content:space-between; height:66px;}
+    .brand{display:flex; gap:12px; align-items:center; font-weight:700; letter-spacing:1.4px;}
+    .logo{
+      width:34px; height:34px; border-radius:10px;
+      background: linear-gradient(135deg, rgba(255,255,255,.22), rgba(255,255,255,.02));
+      border:1px solid var(--line2);
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+      position:relative; overflow:hidden;
+    }
+    .logo:before{
+      content:""; position:absolute; inset:-40%;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,.25), transparent 55%);
+      transform: rotate(18deg);
+    }
+    .brand span.small{
+      font-family:var(--mono); font-weight:600; color:var(--muted);
+      letter-spacing:.6px; font-size:12px; margin-left:6px;
+    }
+    .navlinks{display:flex; gap:18px; align-items:center; color:var(--muted); font-size:14px;}
+    .navlinks a{padding:10px 10px; border-radius:12px}
+    .navlinks a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px; border-radius:14px;
+      border:1px solid var(--line2);
+      background: rgba(255,255,255,.06);
+      color:var(--text); font-size:14px;
+    }
+    .btn:hover{background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.28)}
+    .btn.primary{background: rgba(255,255,255,.92); color:#0b0c0f; border-color: rgba(255,255,255,.92);}
+
+    .hero{padding:64px 0 16px}
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius2);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .cardInner{padding:26px}
+    h1{font-size: clamp(32px, 4vw, 48px); margin:0 0 10px; line-height:1.05; letter-spacing:-.6px;}
+    .lead{color:var(--muted); font-size:16px; line-height:1.7; margin:0;}
+    .kicker{
+      color:rgba(231,233,238,.85);
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    .list{padding:18px 0 40px}
+    .post{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1fr auto;
+      gap:14px;
+      margin-bottom:12px;
+    }
+    .post:hover{border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.04);}
+    .meta{color:rgba(231,233,238,.82); font-size:12px; letter-spacing:.8px; text-transform:uppercase; font-family:var(--mono); margin-bottom:8px;}
+    .title{font-size:16px; letter-spacing:-.2px; margin:0 0 8px;}
+    .excerpt{color:var(--muted); font-size:13px; line-height:1.7; margin:0; max-width: 80ch;}
+    .tag{
+      border:1px solid var(--line);
+      background: var(--chip);
+      color: var(--muted);
+      font-size:12px;
+      padding:8px 10px;
+      border-radius: 999px;
+      font-family:var(--mono);
+      height: fit-content;
+      white-space:nowrap;
+    }
+
+    footer{padding: 28px 0 40px; color: var(--muted); font-size:13px;}
+    .foot{border-top:1px solid var(--line); padding-top:18px; display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; align-items:center;}
+    .mono{font-family:var(--mono)}
+
+    @media (max-width: 920px){
+      .navlinks{display:none;}
+      .post{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <a href="index.html">GEORIGIN</a> <span class="small">blog</span>
+        </div>
+        <nav class="navlinks" aria-label="Primary">
+          <a href="index.html#product">Product</a>
+          <a href="blog.html">Blog</a>
+          <a href="index.html#principles">Principles</a>
+          <a href="index.html#timeline">Timeline</a>          
+          <a href="index.html#contact">Contact</a>
+        </nav>
+        <div class="cta">
+          <a class="btn" href="index.html">Back</a>
+          <a class="btn primary" href="index.html#contact">Get Updates</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="wrap">
+      <div class="card">
+        <div class="cardInner">
+          <div class="kicker">Build log</div>
+          <h1>Notes from the lab</h1>
+          <p class="lead">Short posts about prototypes, design decisions, algorithms, and systems thinking.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="list">
+    <div class="wrap">
+
+      <!-- 复制这个块来新增文章条目 -->
+      <a class="post" href="posts/2026-01-02.md">
+        <div>
+          <div class="meta">2026.01.02 · systems</div>
+          <h2 class="title">Hello, blog — why we build Λ ⊗ Σ systems</h2>
+          <p class="excerpt">A quick manifesto: feature extraction, multimodal fusion, and system-level robustness.</p>
+        </div>
+        <div class="tag">Λ ⊗ Σ</div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>© <span id="y"></span> GEORIGIN. All rights reserved.</div>
+        <div class="mono"><a href="index.html">Home</a> · <a href="blog.html">Blog</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
