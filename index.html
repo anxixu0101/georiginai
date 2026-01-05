@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GEORIGIN — Useful. Creative. Simple.</title>
   <meta name="description"
-    content="GEORIGIN builds useful, creative, simple products. Easing-Point: a desktop device that detects sedentary time without contact and shows heart rate." />
+    content="GEORIGIN builds useful, creative, simple products. Easing-Point: a desktop device that detects sedentary behavior without contact and shows heart rate." />
   <meta name="theme-color" content="#0b0c0f" />
 
   <!-- Optional: social preview -->
   <meta property="og:title" content="GEORIGIN — Useful. Creative. Simple." />
   <meta property="og:description"
-    content="Easing-Point is coming soon: a desktop device that detects sedentary time without contact and shows heart rate." />
+    content="Easing-Point is coming soon: a desktop device that detects sedentary behavior without contact and shows heart rate." />
   <meta property="og:type" content="website" />
 
   <style>
@@ -199,134 +199,17 @@
       padding: 64px 0 28px
     }
 
+    .heroTitle {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 32px auto;
+    }
+
     .heroGrid {
       display: grid;
       grid-template-columns: 1.15fr .85fr;
       gap: 22px;
       align-items: stretch;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .04);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .cardInner {
-      padding: 26px
-    }
-
-    h1 {
-      font-size: clamp(34px, 4.4vw, 54px);
-      margin: 14px 0 10px;
-      line-height: 1.05;
-      letter-spacing: -.6px;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.65;
-      margin: 0 0 18px;
-      max-width: 62ch;
-    }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 16px 0 20px;
-    }
-
-    .tag {
-      border: 1px solid var(--line);
-      background: var(--chip);
-      color: var(--muted);
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-family: var(--mono);
-    }
-
-    .heroActions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap
-    }
-
-    .note {
-      margin-top: 14px;
-      color: rgba(231, 233, 238, .75);
-      font-size: 13px;
-      font-family: var(--mono);
-    }
-
-    /* right panel (product) */
-    .productHead {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 14px;
-      margin-bottom: 14px;
-    }
-
-    .productTitle {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .productTitle h2 {
-      margin: 0;
-      font-size: 20px;
-      letter-spacing: -.2px;
-    }
-
-    .productTitle p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.5;
-    }
-
-    .mock {
-      margin-top: 14px;
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-
-    .specRow {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 12px 12px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(0, 0, 0, .12);
-    }
-
-    .specRow .k {
-      color: var(--muted);
-      font-size: 12px;
-      font-family: var(--mono);
-    }
-
-    .specRow .v {
-      color: var(--text);
-      font-size: 12px;
-      font-family: var(--mono);
-      text-align: right;
-    }
-
-    .divider {
-      height: 1px;
-      background: var(--line);
-      margin: 18px 0;
     }
 
     /* sections */
@@ -402,26 +285,70 @@
       text-transform: uppercase;
     }
 
-    /* Timeline */
+    /* Timeline (vertical line + cards) */
     .timeline {
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+      margin-top: 12px;
+      padding-left: 26px;
+      /* space for line + dots */
+    }
+
+    .timeline:before {
+      content: "";
+      position: absolute;
+      left: 10px;
+      top: 2px;
+      bottom: 2px;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .04));
+      border-radius: 999px;
     }
 
     .tItem {
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
+      position: relative;
+      display: flex;
+      align-items: flex-start;
       gap: 14px;
-      padding: 16px;
+    }
+
+    .tItem:before {
+      content: "";
+      position: absolute;
+      left: -26px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .70);
+      box-shadow: 0 0 0 6px rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .18);
+    }
+
+    .tCard {
+      flex: 1 1 auto;
       border: 1px solid var(--line);
       border-radius: var(--radius2);
       background: rgba(255, 255, 255, .03);
+      box-shadow: var(--shadow);
       overflow: hidden;
     }
 
-    .tCol {
-      padding: 2px 2px
+    .tCardInner {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .tMeta {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 0;
     }
 
     .tDate {
@@ -432,13 +359,13 @@
       font-size: 12px;
       letter-spacing: .8px;
       text-transform: uppercase;
-      margin-bottom: 8px;
+      font-family: var(--mono);
     }
 
     .tTitle {
       font-size: 16px;
       letter-spacing: -.2px;
-      margin-bottom: 8px;
+      margin: 0;
     }
 
     .tText {
@@ -446,18 +373,19 @@
       font-size: 13px;
       line-height: 1.7;
       max-width: 70ch;
+      margin: 0;
     }
 
     .tMedia {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: rgba(0, 0, 0, .16);
-      min-height: 200px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      /* keeps cards consistent, avoids empty space */
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow: hidden;
     }
 
     .tImg {
@@ -467,7 +395,7 @@
       display: block;
       filter: none;
       opacity: 1;
-      transition: transform .25s ease, box-shadow .25s ease;
+      transition: transform .25s ease;
     }
 
     .tMedia:hover .tImg {
@@ -482,6 +410,41 @@
       border-radius: 16px;
       background: rgba(255, 255, 255, .03);
       width: 100%;
+    }
+
+    .socials {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-left: 10px;
+    }
+
+    .socials a {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, .03);
+      transition: all .2s ease;
+    }
+
+    .socials a:hover {
+      background: rgba(255, 255, 255, .08);
+      border-color: var(--line2);
+      transform: translateY(-1px);
+    }
+
+    .socials svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--muted);
+    }
+
+    .socials a:hover svg {
+      fill: var(--text);
     }
 
     .subscribeHeroTitle {
@@ -604,42 +567,6 @@
       }
     }
 
-    /* ===== Social icons (footer) ===== */
-    .socials {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      margin-left: 10px;
-    }
-
-    .socials a {
-      width: 32px;
-      height: 32px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .03);
-      transition: all .2s ease;
-    }
-
-    .socials a:hover {
-      background: rgba(255, 255, 255, .08);
-      border-color: var(--line2);
-      transform: translateY(-1px);
-    }
-
-    .socials svg {
-      width: 16px;
-      height: 16px;
-      fill: var(--muted);
-    }
-
-    .socials a:hover svg {
-      fill: var(--text);
-    }
-
     /* responsive */
     @media (max-width: 920px) {
       .heroGrid {
@@ -658,12 +585,20 @@
         display: none;
       }
 
-      .tItem {
+      .tCardInner {
         grid-template-columns: 1fr;
       }
 
-      .tMedia {
-        min-height: 160px;
+      .timeline {
+        padding-left: 22px;
+      }
+
+      .timeline:before {
+        left: 8px;
+      }
+
+      .tItem:before {
+        left: -22px;
       }
     }
   </style>
@@ -698,6 +633,10 @@
   <!-- Hero -->
   <header class="hero">
     <div class="wrap">
+      <h1 class="heroTitle">
+        Easing-Point — A contactless, privacy-first fatigue awareness device
+      </h1>
+
       <div class="heroGrid">
         <!-- BIG Newsletter -->
         <div id="subscribe" class="subscribeHero">
@@ -741,6 +680,7 @@
             </div>
           </div>
           <!-- /MailerLite Embed -->
+
         </div>
         <!-- /BIG Newsletter -->
 
@@ -753,60 +693,71 @@
     <div class="wrap">
       <div class="kicker">Timeline</div>
 
-      <div class="timeline" style="margin-top:12px;">
-        <article class="tItem">
-          <div class="tCol">
-            <div class="tDate mono">2025.09</div>
-            <div class="tTitle">Easing-Point idea was born</div>
-            <div class="tText">
-              The initial concept for a contactless, desk-ready wellness device took shape.
+      <div class="timeline">
+        <div class="tItem">
+          <div class="tCard">
+            <div class="tCardInner">
+              <div class="tMeta">
+                <div class="tDate">2025.09</div>
+                <h3 class="tTitle">Easing-Point idea was born</h3>
+                <p class="tText">The initial concept for a contactless, desk-ready wellness device took shape.</p>
+              </div>
+              <div class="tMedia">
+                <img class="tImg" src="/assets/images/2.jpg" alt="Early prototype">
+              </div>
             </div>
           </div>
-          <div class="tMedia">
-            <img class="tImg" src="/assets/images/2.jpg" alt="BioZero prototype">
-          </div>
-        </article>
+        </div>
 
-        <article class="tItem">
-          <div class="tCol">
-            <div class="tDate mono">2025.10</div>
-            <div class="tTitle">BioZero prototype completed</div>
-            <div class="tText">
-              The first working prototype, <strong>BioZero</strong>, was assembled to validate sensing and UX.
+        <div class="tItem">
+          <div class="tCard">
+            <div class="tCardInner">
+              <div class="tMeta">
+                <div class="tDate">2025.10</div>
+                <h3 class="tTitle">BioZero prototype completed</h3>
+                <p class="tText">The first working prototype, <strong>BioZero</strong>, was assembled to validate
+                  sensing and UX.</p>
+              </div>
+              <div class="tMedia">
+                <img class="tImg" src="/assets/images/1.jpg" alt="BioZero prototype">
+              </div>
             </div>
           </div>
-          <div class="tMedia">
-            <img class="tImg" src="/assets/images/1.jpg" alt="BioZero prototype">
-          </div>
-        </article>
+        </div>
 
-        <article class="tItem">
-          <div class="tCol">
-            <div class="tDate mono">2025.11</div>
-            <div class="tTitle">First prototype shipped to Slovenia for testing</div>
-            <div class="tText">
-              We mailed the first BioZero unit to a community tester in Slovenia for real-world feedback.
+        <div class="tItem">
+          <div class="tCard">
+            <div class="tCardInner">
+              <div class="tMeta">
+                <div class="tDate">2025.11</div>
+                <h3 class="tTitle">First prototype shipped to Slovenia for testing</h3>
+                <p class="tText">We mailed the first BioZero unit to a community tester in Slovenia for real-world
+                  feedback.</p>
+              </div>
+              <div class="tMedia">
+                <img class="tImg" src="/assets/images/4.jpg" alt="BioZero shipped for testing">
+              </div>
             </div>
           </div>
-          <div class="tMedia">
-            <img class="tImg" src="/assets/images/4.jpg" alt="BioZero shipped for testing">
-          </div>
-        </article>
+        </div>
 
-        <article class="tItem">
-          <div class="tCol">
-            <div class="tDate mono">2025.12</div>
-            <div class="tTitle">Easing-Point redesign: form, algorithms, and structure</div>
-            <div class="tText">
-              We restarted industrial design and refined algorithms and internal structure to reach a cleaner, simpler
-              product.
+        <div class="tItem">
+          <div class="tCard">
+            <div class="tCardInner">
+              <div class="tMeta">
+                <div class="tDate">2025.12</div>
+                <h3 class="tTitle">Easing-Point redesign: form, algorithms, and structure</h3>
+                <p class="tText">We restarted industrial design and refined algorithms and internal structure to reach a
+                  cleaner, simpler product.</p>
+              </div>
+              <div class="tMedia">
+                <img class="tImg" src="/assets/images/7.png" alt="Easing-Point redesign">
+              </div>
             </div>
           </div>
-          <div class="tMedia">
-            <img class="tImg" src="/assets/images/7.png" alt="Easing-Point redesign">
-          </div>
-        </article>
+        </div>
       </div>
+
     </div>
   </section>
 
@@ -842,45 +793,38 @@
     <div class="wrap">
       <div class="foot">
         <div>© <span id="y"></span> GEORIGIN. All rights reserved.</div>
+        <div class="socials" aria-label="Social links">
+          <a href="https://discord.gg/s8bqAQeaXa" target="_blank" aria-label="Discord" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M20.3 4.5A19.8 19.8 0 0 0 16 3a14.8 14.8 0 0 0-.7 1.5 18.4 18.4 0 0 0-5.6 0A14.8 14.8 0 0 0 9 3a19.8 19.8 0 0 0-4.3 1.5C1.9 8.6 1.3 12.6 1.6 16.6a19.8 19.8 0 0 0 5.9 3 14.6 14.6 0 0 0 1.3-2.1 12.3 12.3 0 0 1-2-.9l.5-.4a14 14 0 0 0 12.2 0l.5.4a12.3 12.3 0 0 1-2 .9 14.6 14.6 0 0 0 1.3 2.1 19.8 19.8 0 0 0 5.9-3c.4-4-.2-8-3-12.1zM8.7 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z" />
+            </svg>
+          </a>
 
+          <a href="https://x.com/GeOrigin0101" target="_blank" aria-label="X" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18.3 2H21l-6.5 7.4L22 22h-6.2l-4.9-6.4L5.3 22H2.6l7-8-7-12h6.3l4.4 5.8L18.3 2z" />
+            </svg>
+          </a>
 
+          <a href="https://www.instagram.com/georigin0101/" target="_blank" aria-label="Instagram"
+            rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+            </svg>
+          </a>
 
-          <!-- Social icons -->
-          <div class="socials" aria-label="Social links">
-            <a href="https://discord.gg/s8bqAQeaXa" target="_blank" aria-label="Discord" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20.3 4.5A19.8 19.8 0 0 0 16 3a14.8 14.8 0 0 0-.7 1.5 18.4 18.4 0 0 0-5.6 0A14.8 14.8 0 0 0 9 3a19.8 19.8 0 0 0-4.3 1.5C1.9 8.6 1.3 12.6 1.6 16.6a19.8 19.8 0 0 0 5.9 3 14.6 14.6 0 0 0 1.3-2.1 12.3 12.3 0 0 1-2-.9l.5-.4a14 14 0 0 0 12.2 0l.5.4a12.3 12.3 0 0 1-2 .9 14.6 14.6 0 0 0 1.3 2.1 19.8 19.8 0 0 0 5.9-3c.4-4-.2-8-3-12.1zM8.7 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z" />
-              </svg>
-            </a>
-
-            <a href="https://x.com/GeOrigin0101" target="_blank" aria-label="X" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M18.3 2H21l-6.5 7.4L22 22h-6.2l-4.9-6.4L5.3 22H2.6l7-8-7-12h6.3l4.4 5.8L18.3 2z" />
-              </svg>
-            </a>
-
-            <a href="https://www.instagram.com/georigin0101/" target="_blank" aria-label="Instagram"
-              rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
-              </svg>
-            </a>
-
-            <a href="https://www.facebook.com/profile.php?id=61585953214937" target="_blank" aria-label="Facebook"
-              rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M13.5 9H16V6h-2.5c-2.2 0-4 1.8-4 4v2H7v3h2.5v7H13v-7h2.7l.3-3H13v-2c0-.6.4-1 1-1z" />
-              </svg>
-            </a>
-          </div>
-          <!-- /Social icons -->
+          <a href="https://www.facebook.com/profile.php?id=61585953214937" target="_blank" aria-label="Facebook"
+            rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.5 9H16V6h-2.5c-2.2 0-4 1.8-4 4v2H7v3h2.5v7H13v-7h2.7l.3-3H13v-2c0-.6.4-1 1-1z" />
+            </svg>
+          </a>
         </div>
-
+        <!-- /Social icons -->
       </div>
+    </div>
     </div>
   </footer>
 
