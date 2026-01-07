@@ -1029,12 +1029,14 @@
     // Edit these to control what appears in the Insights block.
     const HOME_FEATURED = {
       video: {
-        youtubeId: "dQw4w9WgXcQ", // TODO: replace with your real YouTube video ID
+        youtubeId: "qkziTyCtYeY", // TODO: replace with your real YouTube video ID
         title: "Where This Project Started: An Apple Watch Band Rash",
         desc: "Origin story + why we started building a contactless, privacy-first fatigue awareness device.",
         postHref: "posts.html?p=2026-01-02.md"
       },
-      posts: [
+
+      // Optional: shown only if fetching/parsing blog.html fails
+      fallbackPosts: [
         {
           date: "2026.01.02",
           tag: "Build log",
@@ -1058,7 +1060,7 @@
       if (vPost && v.postHref) vPost.href = v.postHref;
 
       if (frame && v.youtubeId && v.youtubeId !== "REPLACE_ME") {
-        const src = `https://www.youtube.com/embed/qkziTyCtYeY`;
+        const src = `https://www.youtube.com/embed/${v.youtubeId}`;
         frame.innerHTML = `
           <iframe
             src="${src}"
@@ -1071,7 +1073,7 @@
         `;
         if (vYT){
           vYT.style.display = "inline-flex";
-          vYT.href = "https://youtu.be/qkziTyCtYeY?si=PNdg4gHQDyGbgkx1";
+          vYT.href = `https://www.youtube.com/watch?v=${v.youtubeId}`;
         }
       } else if (frame) {
         frame.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(231,233,238,.6);font-family:var(--mono);font-size:12px;">
@@ -1081,18 +1083,130 @@
 
       const cards = document.getElementById("homePostCards");
       if (!cards) return;
-      const posts = (HOME_FEATURED.posts || []).slice(0, 3);
-      cards.innerHTML = posts.map(p => `
-        <a class="postCard" href="${p.href}">
-          <div class="postMetaRow">
-            <span class="postDate">${p.date || ""}</span>
-            ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-          </div>
-          <h4 class="postTitle">${p.title || ""}</h4>
-          <p class="postExcerpt">${p.excerpt || ""}</p>
-        </a>
-      `).join("") || `<div style="color:var(--muted);font-size:13px;">No posts yet. Add items to HOME_FEATURED.posts.</div>`;
-    })();
+
+      // --- Auto-load latest posts from blog.html (based on your current blog.html structure) ---
+      const formatDateFromFile = (file) => {
+        const m = String(file || "").match(/(\d{4})-(\d{2})-(\d{2})/);
+        return m ? `${m[1]}.${m[2]}.${m[3]}` : "";
+      };
+
+      const stripMd = (s) => String(s || "")
+        .replace(/```[\s\S]*?```/g, " ")
+        .replace(/`[^`]*`/g, " ")
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+        .replace(/\[[^\]]*\]\([^)]*\)/g, "$1")
+        .replace(/^#+\s+/gm, "")
+        .replace(/[*_>#-]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+      const pickExcerptFromMarkdown = (md) => {
+        if (!md) return "";
+        let text = String(md);
+
+        // remove YAML front-matter if present
+        const fm = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
+        if (fm) text = text.slice(fm[0].length);
+
+        // first non-empty paragraph-ish line
+        const lines = text.split(/\r?\n/).map(l => l.trim());
+        const first = lines.find(l => l && !l.startsWith("#") && !l.startsWith(">")) || "";
+        const clean = stripMd(first);
+        return clean.length > 140 ? clean.slice(0, 140).trim() + "…" : clean;
+      };
+
+      const parseFrontMatter = (md) => {
+        const out = {};
+        const m = String(md || "").match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
+        if (!m) return out;
+        const block = m[1];
+        block.split(/\r?\n/).forEach(line => {
+          const mm = line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.*)\s*$/);
+          if (!mm) return;
+          const k = mm[1];
+          let v = mm[2] || "";
+          v = v.replace(/^["']|["']$/g, "");
+          out[k] = v;
+        });
+        return out;
+      };
+
+      async function getLatestPostsFromBlog(max = 3) {
+        const res = await fetch("blog.html", { cache: "no-store" });
+        if (!res.ok) throw new Error("blog.html fetch failed");
+        const html = await res.text();
+
+        const doc = new DOMParser().parseFromString(html, "text/html");
+        const anchors = Array.from(doc.querySelectorAll('a[href^="posts.html?p="]'));
+
+        const items = anchors
+          .map(a => {
+            const href = a.getAttribute("href") || "";
+            const title = (a.textContent || "").trim().replace(/\s+/g, " ");
+            const p = href.match(/\bp=([^&#]+)/);
+            const file = p ? decodeURIComponent(p[1]) : "";
+            return { href, title, file };
+          })
+          .filter(x => x.href && x.title)
+          .slice(0, max);
+
+        // Enrich with excerpt (optional) by fetching the markdown files.
+        const enriched = await Promise.all(items.map(async (it) => {
+          let excerpt = "";
+          let tag = "Build log";
+          let date = formatDateFromFile(it.file);
+
+          try {
+            if (it.file) {
+              const r = await fetch(`posts/${it.file}`, { cache: "no-store" });
+              if (r.ok) {
+                const md = await r.text();
+                const fm = parseFrontMatter(md);
+                // allow per-post override via front-matter
+                if (fm.date) date = fm.date;
+                if (fm.tag) tag = fm.tag;
+                if (fm.excerpt) excerpt = fm.excerpt;
+                if (!excerpt) excerpt = pickExcerptFromMarkdown(md);
+              }
+            }
+          } catch (_) { /* ignore */ }
+
+          return {
+            date,
+            tag,
+            title: it.title,
+            excerpt: excerpt || "",
+            href: it.href
+          };
+        }));
+
+        return enriched;
+      }
+
+      // Render immediately with a lightweight skeleton, then replace when loaded.
+      cards.innerHTML = `
+        <div style="color:var(--muted);font-size:13px;">Loading latest posts…</div>
+      `;
+
+      (async () => {
+        let posts = [];
+        try {
+          posts = await getLatestPostsFromBlog(3);
+        } catch (_) {
+          posts = (HOME_FEATURED.fallbackPosts || []).slice(0, 3);
+        }
+
+        cards.innerHTML = (posts || []).map(p => `
+          <a class="postCard" href="${p.href}">
+            <div class="postMetaRow">
+              <span class="postDate">${p.date || ""}</span>
+              ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+            </div>
+            <h4 class="postTitle">${p.title || ""}</h4>
+            <p class="postExcerpt">${p.excerpt || ""}</p>
+          </a>
+        `).join("") || `<div style="color:var(--muted);font-size:13px;">No posts found.</div>`;
+      })();})();
 
 
     // MailerLite success callback (their script will call this)

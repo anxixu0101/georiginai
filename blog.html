@@ -9,7 +9,6 @@
   <meta name="theme-color" content="#0b0c0f" />
 
   <style>
-    /* 直接复用你 index 的 CSS（精简：保留核心变量 + 卡片系统 + timeline样式） */
     :root {
       --bg: #0b0c0f;
       --text: #e7e9ee;
@@ -25,14 +24,8 @@
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
 
-    * {
-      box-sizing: border-box
-    }
-
-    html,
-    body {
-      height: 100%
-    }
+    * { box-sizing: border-box }
+    html, body { height: 100% }
 
     body {
       margin: 0;
@@ -45,10 +38,7 @@
       letter-spacing: .2px;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none
-    }
+    a { color: inherit; text-decoration: none }
 
     .wrap {
       max-width: var(--max);
@@ -149,9 +139,7 @@
       border-color: rgba(255, 255, 255, .92);
     }
 
-    .hero {
-      padding: 64px 0 16px
-    }
+    .hero { padding: 64px 0 16px }
 
     .card {
       border: 1px solid var(--line);
@@ -161,9 +149,7 @@
       overflow: hidden;
     }
 
-    .cardInner {
-      padding: 26px
-    }
+    .cardInner { padding: 26px }
 
     h1 {
       font-size: clamp(32px, 4vw, 48px);
@@ -179,20 +165,17 @@
       margin: 0;
     }
 
-    .kicker {
-      color: rgba(231, 233, 238, .85);
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
+    .list { padding: 18px 0 40px }
+
+    /* ✅ 关键：让列表里的条目按列排列，而不是“裸 a” */
+    main.list .wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .list {
-      padding: 18px 0 40px
-    }
-
-    .post {
+    /* Blog post card */
+    a.post {
       border: 1px solid var(--line);
       border-radius: var(--radius2);
       background: rgba(255, 255, 255, .03);
@@ -200,18 +183,9 @@
       display: grid;
       grid-template-columns: 1fr auto;
       gap: 14px;
-      margin-bottom: 12px;
     }
 
-    /* blog content images */
-    .post-content img,
-    article img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .post:hover {
+    a.post:hover {
       border-color: rgba(255, 255, 255, .22);
       background: rgba(255, 255, 255, .04);
     }
@@ -229,6 +203,7 @@
       font-size: 16px;
       letter-spacing: -.2px;
       margin: 0 0 8px;
+      line-height: 1.35;
     }
 
     .excerpt {
@@ -249,6 +224,7 @@
       font-family: var(--mono);
       height: fit-content;
       white-space: nowrap;
+      align-self: start;
     }
 
     footer {
@@ -267,18 +243,12 @@
       align-items: center;
     }
 
-    .mono {
-      font-family: var(--mono)
-    }
+    .mono { font-family: var(--mono) }
 
     @media (max-width: 920px) {
-      .navlinks {
-        display: none;
-      }
-
-      .post {
-        grid-template-columns: 1fr;
-      }
+      .navlinks { display: none; }
+      a.post { grid-template-columns: 1fr; }
+      .tag { justify-self: start; }
     }
   </style>
 </head>
@@ -318,11 +288,24 @@
   <main class="list">
     <div class="wrap">
 
-      <!-- 复制这个块来新增文章条目 -->
-      <a href="posts.html?p=2026-01-02.md">
-        Where This Project Started: An Apple Watch Band Rash
+      <!-- ✅ 复制这个 <a class="post"> 块来新增文章条目 -->
+      <a class="post" href="posts.html?p=2026-01-07.md">
+        <div>
+          <div class="meta">2026-01-07</div>
+          <h2 class="title">I replaced the millimeter-wave radar sensor and hired a new designer to redesign the exterior</h2>
+          
+        </div>
+        <div class="tag">Build log</div>
       </a>
 
+      <a class="post" href="posts.html?p=2026-01-02.md">
+        <div>
+          <div class="meta">2026-01-02</div>
+          <h2 class="title">Where This Project Started: An Apple Watch Band Rash</h2>
+          
+        </div>
+        <div class="tag">Build log</div>
+      </a>
 
     </div>
   </main>
