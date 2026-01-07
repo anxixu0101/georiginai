@@ -568,6 +568,153 @@
       }
     }
 
+
+    /* ===== Insights (Blog + Video) ===== */
+    .insightsGrid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      margin-top:12px;
+      align-items: stretch;
+    }
+    .videoCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height: 0;
+    }
+    .videoTop{
+      padding:16px 16px 0 16px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .videoTitle{
+      margin: 0;
+      font-size: 16px;
+      letter-spacing: -.2px;
+    }
+    .videoDesc{
+      margin: 10px 16px 0 16px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .videoFrame{
+      margin: 14px 16px 16px 16px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(0,0,0,.16);
+      overflow:hidden;
+      aspect-ratio: 16 / 9;
+    }
+    .videoFrame iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+    }
+    .postList{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
+    .postListHead{
+      padding:16px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      border-bottom:1px solid var(--line);
+      background: rgba(255,255,255,.02);
+    }
+    .postListHead h3{
+      margin:0;
+      font-size:14px;
+      letter-spacing:.2px;
+      color: rgba(231,233,238,.92);
+    }
+    .postCards{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .postCard{
+      border:1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.02);
+      padding:14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .postCard:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.04);
+      border-color: rgba(255,255,255,.22);
+    }
+    .postMetaRow{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      margin-bottom:8px;
+    }
+    .postDate{
+      font-family: var(--mono);
+      font-size:12px;
+      letter-spacing:.8px;
+      text-transform: uppercase;
+      color: rgba(231,233,238,.78);
+    }
+
+    .tag{
+      border: 1px solid var(--line);
+      background: var(--chip);
+      color: var(--muted);
+      font-size: 12px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-family: var(--mono);
+      height: fit-content;
+      white-space: nowrap;
+    }
+    .postTitle{
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: -.2px;
+    }
+    .postExcerpt{
+      margin:0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      max-width: 72ch;
+    }
+    .postFooter{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .linkMuted{
+      color: var(--muted);
+      font-size:13px;
+    }
+    .linkMuted:hover{ color: var(--text); }
+
+
     /* responsive */
     @media (max-width: 920px) {
       .heroGrid {
@@ -618,6 +765,7 @@
 
         <nav class="navlinks" aria-label="Primary">
           <a href="blog.html">Blog</a>
+          <a href="#insights">Insights</a>
           <a href="#timeline">Timeline</a>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
@@ -688,6 +836,51 @@
       </div>
     </div>
   </header>
+
+
+  <!-- Insights (Blog + Video) -->
+  <section class="block" id="insights">
+    <div class="wrap">
+      <div class="kicker">Insights</div>
+
+      <div class="insightsGrid">
+        <!-- Featured video -->
+        <div class="videoCard" aria-label="Featured video">
+          <div class="videoTop">
+            <div class="pill"><span class="dot"></span> Latest video</div>
+            <a class="btn" href="blog.html" aria-label="View blog">Blog →</a>
+          </div>
+
+          <h3 class="videoTitle" style="padding:10px 16px 0 16px;" id="homeVideoTitle">Build log video</h3>
+          <p class="videoDesc" id="homeVideoDesc">
+            A short walk-through of a prototype milestone. (Edit the video ID in <span class="mono">index.html</span>.)
+          </p>
+
+          <div class="videoFrame" id="homeVideoFrame">
+            <!-- iframe injected by script -->
+          </div>
+
+          <div style="padding:0 16px 16px 16px; display:flex; gap:10px; flex-wrap:wrap;">
+            <a class="btn" id="homeVideoPostLink" href="blog.html">Read the related post</a>
+            <a class="btn" id="homeYouTubeLink" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">Open on YouTube</a>
+          </div>
+        </div>
+
+        <!-- Latest posts -->
+        <div class="postList" aria-label="Latest posts">
+          <div class="postListHead">
+            <h3>Latest posts</h3>
+            <a class="linkMuted" href="blog.html">View all →</a>
+          </div>
+
+          <div class="postCards" id="homePostCards">
+            <!-- cards injected by script -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
 
   <!-- Timeline -->
   <section class="block" id="timeline">
@@ -831,6 +1024,76 @@
 
   <script>
     document.getElementById('y').textContent = new Date().getFullYear();
+
+    // ===== Home page: Featured Blog + Video =====
+    // Edit these to control what appears in the Insights block.
+    const HOME_FEATURED = {
+      video: {
+        youtubeId: "dQw4w9WgXcQ", // TODO: replace with your real YouTube video ID
+        title: "Where This Project Started: An Apple Watch Band Rash",
+        desc: "Origin story + why we started building a contactless, privacy-first fatigue awareness device.",
+        postHref: "posts.html?p=2026-01-02.md"
+      },
+      posts: [
+        {
+          date: "2026.01.02",
+          tag: "Build log",
+          title: "Where This Project Started: An Apple Watch Band Rash",
+          excerpt: "A small skin problem turned into a hardware project—privacy-first, desk-ready, and open to the community.",
+          href: "posts.html?p=2026-01-02.md"
+        }
+      ]
+    };
+
+    (function renderHomeInsights(){
+      const v = HOME_FEATURED.video || {};
+      const frame = document.getElementById("homeVideoFrame");
+      const vTitle = document.getElementById("homeVideoTitle");
+      const vDesc  = document.getElementById("homeVideoDesc");
+      const vPost  = document.getElementById("homeVideoPostLink");
+      const vYT    = document.getElementById("homeYouTubeLink");
+
+      if (vTitle && v.title) vTitle.textContent = v.title;
+      if (vDesc && v.desc) vDesc.textContent = v.desc;
+      if (vPost && v.postHref) vPost.href = v.postHref;
+
+      if (frame && v.youtubeId && v.youtubeId !== "REPLACE_ME") {
+        const src = `https://www.youtube.com/embed/qkziTyCtYeY`;
+        frame.innerHTML = `
+          <iframe
+            src="${src}"
+            title="${(v.title || "GEORIGIN video").replace(/"/g,'&quot;')}"
+            loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        `;
+        if (vYT){
+          vYT.style.display = "inline-flex";
+          vYT.href = "https://youtu.be/qkziTyCtYeY?si=PNdg4gHQDyGbgkx1";
+        }
+      } else if (frame) {
+        frame.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(231,233,238,.6);font-family:var(--mono);font-size:12px;">
+          Add a YouTube video ID in HOME_FEATURED.video.youtubeId
+        </div>`;
+      }
+
+      const cards = document.getElementById("homePostCards");
+      if (!cards) return;
+      const posts = (HOME_FEATURED.posts || []).slice(0, 3);
+      cards.innerHTML = posts.map(p => `
+        <a class="postCard" href="${p.href}">
+          <div class="postMetaRow">
+            <span class="postDate">${p.date || ""}</span>
+            ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
+          </div>
+          <h4 class="postTitle">${p.title || ""}</h4>
+          <p class="postExcerpt">${p.excerpt || ""}</p>
+        </a>
+      `).join("") || `<div style="color:var(--muted);font-size:13px;">No posts yet. Add items to HOME_FEATURED.posts.</div>`;
+    })();
+
 
     // MailerLite success callback (their script will call this)
     function ml_webform_success_35246848() {
