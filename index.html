@@ -2,6 +2,24 @@
 <html lang="en">
 
 <head>
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Organization Logo for Google -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "GEORIGIN",
+  "url": "https://georiginai.com/",
+  "logo": "https://georiginai.com/assets/images/logo.jpg"
+}
+</script>
+
+
   <link rel="canonical" href="https://georiginai.com/" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -100,12 +118,14 @@
       position: relative;
       overflow: hidden;
     }
-        .logo img {
+
+    .logo img {
       width: 100%;
       height: 100%;
       object-fit: contain;
       display: block;
     }
+
     .logo:before {
       content: "";
       position: absolute;
