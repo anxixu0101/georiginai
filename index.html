@@ -74,10 +74,11 @@
     }
 
     .nav {
+      margin-left: auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      height: 66px;
+      gap: 28px;
+      /* 控制各项之间间距 */
     }
 
     .brand {
@@ -89,8 +90,8 @@
     }
 
     .logo {
-      width: 34px;
-      height: 34px;
+      width: 40px;
+      height: 40px;
       border-radius: 10px;
       background:
         linear-gradient(135deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .02));
@@ -99,7 +100,12 @@
       position: relative;
       overflow: hidden;
     }
-
+        .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     .logo:before {
       content: "";
       position: absolute;
@@ -122,7 +128,7 @@
       gap: 18px;
       align-items: center;
       color: var(--muted);
-      font-size: 14px;
+      font-size: 18px;
     }
 
     .navlinks a {
@@ -421,8 +427,8 @@
     }
 
     .socials a {
-      width: 32px;
-      height: 32px;
+      width: 40px;
+      height: 40px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -570,114 +576,128 @@
 
 
     /* ===== Insights (Blog + Video) ===== */
-    .insightsGrid{
-      display:grid;
+    .insightsGrid {
+      display: grid;
       grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-      margin-top:12px;
+      gap: 14px;
+      margin-top: 12px;
       align-items: stretch;
     }
-    .videoCard{
-      border:1px solid var(--line);
+
+    .videoCard {
+      border: 1px solid var(--line);
       border-radius: var(--radius2);
-      background: rgba(255,255,255,.03);
+      background: rgba(255, 255, 255, .03);
       box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
       min-height: 0;
     }
-    .videoTop{
-      padding:16px 16px 0 16px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
+
+    .videoTop {
+      padding: 16px 16px 0 16px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
     }
-    .videoTitle{
+
+    .videoTitle {
       margin: 0;
       font-size: 16px;
       letter-spacing: -.2px;
     }
-    .videoDesc{
+
+    .videoDesc {
       margin: 10px 16px 0 16px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.7;
     }
-    .videoFrame{
+
+    .videoFrame {
       margin: 14px 16px 16px 16px;
-      border:1px solid var(--line);
+      border: 1px solid var(--line);
       border-radius: var(--radius);
-      background: rgba(0,0,0,.16);
-      overflow:hidden;
+      background: rgba(0, 0, 0, .16);
+      overflow: hidden;
       aspect-ratio: 16 / 9;
     }
-    .videoFrame iframe{
-      width:100%;
-      height:100%;
-      border:0;
-      display:block;
-    }
-    .postList{
-      border:1px solid var(--line);
-      border-radius: var(--radius2);
-      background: rgba(255,255,255,.03);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
-    .postListHead{
-      padding:16px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:10px;
-      border-bottom:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-    }
-    .postListHead h3{
-      margin:0;
-      font-size:14px;
-      letter-spacing:.2px;
-      color: rgba(231,233,238,.92);
-    }
-    .postCards{
-      padding:16px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
-    .postCard{
-      border:1px solid var(--line);
-      border-radius: var(--radius2);
-      background: rgba(255,255,255,.02);
-      padding:14px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-    .postCard:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.04);
-      border-color: rgba(255,255,255,.22);
-    }
-    .postMetaRow{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      margin-bottom:8px;
-    }
-    .postDate{
-      font-family: var(--mono);
-      font-size:12px;
-      letter-spacing:.8px;
-      text-transform: uppercase;
-      color: rgba(231,233,238,.78);
+
+    .videoFrame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
     }
 
-    .tag{
+    .postList {
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255, 255, 255, .03);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .postListHead {
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .postListHead h3 {
+      margin: 0;
+      font-size: 14px;
+      letter-spacing: .2px;
+      color: rgba(231, 233, 238, .92);
+    }
+
+    .postCards {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .postCard {
+      border: 1px solid var(--line);
+      border-radius: var(--radius2);
+      background: rgba(255, 255, 255, .02);
+      padding: 14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+
+    .postCard:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, .04);
+      border-color: rgba(255, 255, 255, .22);
+    }
+
+    .postMetaRow {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .postDate {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: rgba(231, 233, 238, .78);
+    }
+
+    .tag {
       border: 1px solid var(--line);
       background: var(--chip);
       color: var(--muted);
@@ -688,31 +708,38 @@
       height: fit-content;
       white-space: nowrap;
     }
-    .postTitle{
+
+    .postTitle {
       margin: 0 0 6px;
       font-size: 15px;
       letter-spacing: -.2px;
     }
-    .postExcerpt{
-      margin:0;
+
+    .postExcerpt {
+      margin: 0;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.7;
       max-width: 72ch;
     }
-    .postFooter{
-      margin-top:10px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:space-between;
+
+    .postFooter {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
     }
-    .linkMuted{
+
+    .linkMuted {
       color: var(--muted);
-      font-size:13px;
+      font-size: 13px;
     }
-    .linkMuted:hover{ color: var(--text); }
+
+    .linkMuted:hover {
+      color: var(--text);
+    }
 
 
     /* responsive */
@@ -759,7 +786,10 @@
     <div class="wrap">
       <div class="nav">
         <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
+          <div class="logo" aria-hidden="true">
+            <img src="/assets/images/logo.jpg" alt="GEORIGIN logo">
+          </div>
+
           GEORIGIN <span class="small">useful • creative • simple</span>
         </div>
 
@@ -771,10 +801,7 @@
           <a href="#contact">Contact</a>
         </nav>
 
-        <div class="cta">
-          <a class="btn" href="#product">Explore Easing-Point</a>
-          <a class="btn primary" href="#subscribe">Get Updates</a>
-        </div>
+
       </div>
     </div>
   </div>
@@ -862,7 +889,8 @@
 
           <div style="padding:0 16px 16px 16px; display:flex; gap:10px; flex-wrap:wrap;">
             <a class="btn" id="homeVideoPostLink" href="blog.html">Read the related post</a>
-            <a class="btn" id="homeYouTubeLink" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">Open on YouTube</a>
+            <a class="btn" id="homeYouTubeLink" href="#" target="_blank" rel="noopener noreferrer"
+              style="display:none;">Open on YouTube</a>
           </div>
         </div>
 
@@ -974,11 +1002,44 @@
           <p>
             For partnerships, press, or early access:
             <br /><br />
-            <span class="mono">Email:</span> <a href="mailto:georigin0101@gmail.com">georigin0101@gmail.com</a>
-            <br />
+
+            <span class="mono">Links:</span>
+            <span class="socials" aria-label="Social links"
+              style="display:inline-flex; vertical-align:middle; margin-left:40px;">
+              <a href="https://discord.gg/s8bqAQeaXa" target="_blank" aria-label="Discord" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M20.3 4.5A19.8 19.8 0 0 0 16 3a14.8 14.8 0 0 0-.7 1.5 18.4 18.4 0 0 0-5.6 0A14.8 14.8 0 0 0 9 3a19.8 19.8 0 0 0-4.3 1.5C1.9 8.6 1.3 12.6 1.6 16.6a19.8 19.8 0 0 0 5.9 3 14.6 14.6 0 0 0 1.3-2.1 12.3 12.3 0 0 1-2-.9l.5-.4a14 14 0 0 0 12.2 0l.5.4a12.3 12.3 0 0 1-2 .9 14.6 14.6 0 0 0 1.3 2.1 19.8 19.8 0 0 0 5.9-3c.4-4-.2-8-3-12.1zM8.7 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z" />
+                </svg>
+              </a>
+
+              <a href="https://x.com/GeOrigin0101" target="_blank" aria-label="X" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M18.3 2H21l-6.5 7.4L22 22h-6.2l-4.9-6.4L5.3 22H2.6l7-8-7-12h6.3l4.4 5.8L18.3 2z" />
+                </svg>
+              </a>
+
+              <a href="https://www.instagram.com/georigin0101/" target="_blank" aria-label="Instagram"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path
+                    d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
+                </svg>
+              </a>
+
+              <a href="https://www.facebook.com/profile.php?id=61585953214937" target="_blank" aria-label="Facebook"
+                rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M13.5 9H16V6h-2.5c-2.2 0-4 1.8-4 4v2H7v3h2.5v7H13v-7h2.7l.3-3H13v-2c0-.6.4-1 1-1z" />
+                </svg>
+              </a>
+            </span>
+
+            <br /><br />
             <span class="mono">Updates:</span> <a href="#subscribe">Join the newsletter</a>
           </p>
         </div>
+
       </div>
     </div>
   </section>
@@ -987,35 +1048,6 @@
     <div class="wrap">
       <div class="foot">
         <div>© <span id="y"></span> GEORIGIN. All rights reserved.</div>
-        <div class="socials" aria-label="Social links">
-          <a href="https://discord.gg/s8bqAQeaXa" target="_blank" aria-label="Discord" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M20.3 4.5A19.8 19.8 0 0 0 16 3a14.8 14.8 0 0 0-.7 1.5 18.4 18.4 0 0 0-5.6 0A14.8 14.8 0 0 0 9 3a19.8 19.8 0 0 0-4.3 1.5C1.9 8.6 1.3 12.6 1.6 16.6a19.8 19.8 0 0 0 5.9 3 14.6 14.6 0 0 0 1.3-2.1 12.3 12.3 0 0 1-2-.9l.5-.4a14 14 0 0 0 12.2 0l.5.4a12.3 12.3 0 0 1-2 .9 14.6 14.6 0 0 0 1.3 2.1 19.8 19.8 0 0 0 5.9-3c.4-4-.2-8-3-12.1zM8.7 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z" />
-            </svg>
-          </a>
-
-          <a href="https://x.com/GeOrigin0101" target="_blank" aria-label="X" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M18.3 2H21l-6.5 7.4L22 22h-6.2l-4.9-6.4L5.3 22H2.6l7-8-7-12h6.3l4.4 5.8L18.3 2z" />
-            </svg>
-          </a>
-
-          <a href="https://www.instagram.com/georigin0101/" target="_blank" aria-label="Instagram"
-            rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
-            </svg>
-          </a>
-
-          <a href="https://www.facebook.com/profile.php?id=61585953214937" target="_blank" aria-label="Facebook"
-            rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M13.5 9H16V6h-2.5c-2.2 0-4 1.8-4 4v2H7v3h2.5v7H13v-7h2.7l.3-3H13v-2c0-.6.4-1 1-1z" />
-            </svg>
-          </a>
-        </div>
         <!-- /Social icons -->
       </div>
     </div>
@@ -1047,13 +1079,13 @@
       ]
     };
 
-    (function renderHomeInsights(){
+    (function renderHomeInsights() {
       const v = HOME_FEATURED.video || {};
       const frame = document.getElementById("homeVideoFrame");
       const vTitle = document.getElementById("homeVideoTitle");
-      const vDesc  = document.getElementById("homeVideoDesc");
-      const vPost  = document.getElementById("homeVideoPostLink");
-      const vYT    = document.getElementById("homeYouTubeLink");
+      const vDesc = document.getElementById("homeVideoDesc");
+      const vPost = document.getElementById("homeVideoPostLink");
+      const vYT = document.getElementById("homeYouTubeLink");
 
       if (vTitle && v.title) vTitle.textContent = v.title;
       if (vDesc && v.desc) vDesc.textContent = v.desc;
@@ -1064,14 +1096,14 @@
         frame.innerHTML = `
           <iframe
             src="${src}"
-            title="${(v.title || "GEORIGIN video").replace(/"/g,'&quot;')}"
+            title="${(v.title || "GEORIGIN video").replace(/"/g, '&quot;')}"
             loading="lazy"
             referrerpolicy="strict-origin-when-cross-origin"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
         `;
-        if (vYT){
+        if (vYT) {
           vYT.style.display = "inline-flex";
           vYT.href = `https://www.youtube.com/watch?v=${v.youtubeId}`;
         }
@@ -1206,7 +1238,8 @@
             <p class="postExcerpt">${p.excerpt || ""}</p>
           </a>
         `).join("") || `<div style="color:var(--muted);font-size:13px;">No posts found.</div>`;
-      })();})();
+      })();
+    })();
 
 
     // MailerLite success callback (their script will call this)
