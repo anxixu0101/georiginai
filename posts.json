@@ -1,0 +1,26 @@
+[
+  {
+    "date": "2026-06-07",
+    "slug": "2026-06-07.md",
+    "title": "We Assembled the First Easing-Point and Released a Video",
+    "excerpt": "At the end of May, we finished assembling the first fully enclosed prototype. Due to budget constraints, we didn’t have an office, so we ended up quickly putting it together in a public restaurant."
+  },
+  {
+    "date": "2026-05-18",
+    "slug": "2026-05-18.md",
+    "title": "Rethinking Everything from Scratch",
+    "excerpt": "*Four months of silence. Here's what happened.*"
+  },
+  {
+    "date": "2026-01-07",
+    "slug": "2026-01-07.md",
+    "title": "I replaced the millimeter-wave radar sensor and hired a new designer to redesign the exterior",
+    "excerpt": "Based on my repeated testing, the prototype you saw in the video still has many problems. For example, it's slow to react, and the maximum heart rate it can measure is 100. The problem of the maximum heart rate measurement value is easily solved; I replaced the millimeter-wave radar chip, and that resolved the issue. The second reason I had to replace the millimeter-wave radar chip is that the one used in the prototype didn't seem to be FCC certified, while the one I replaced it with is FCC certified, which gives me peace of mind. And I purchased the official baseplate to perform basic sensor testing."
+  },
+  {
+    "date": "2026-01-02",
+    "slug": "2026-01-02.md",
+    "title": "Where This Project Started: An Apple Watch Band Rash",
+    "excerpt": "position:relative;"
+  }
+]

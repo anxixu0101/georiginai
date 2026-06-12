@@ -3,515 +3,379 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>GEORIGIN — Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0c0f" />
+  <title>GEORIGIN — Blog</title>
+  <meta name="theme-color" content="#f4f4f2" />
 
-  <!-- Markdown 渲染库（marked.js） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=DotGothic16&display=swap" rel="stylesheet">
+
+  <!-- Markdown 渲染 -->
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-  <!-- 可选：代码高亮（Prism.js） -->
+  <!-- 代码高亮 -->
   <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-javascript.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-c.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-cpp.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-python.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
 
   <style>
-    /* ====== 直接复用 index.html 的整套风格（保证一致） ====== */
     :root {
-      --bg: #0b0c0f;
-      --panel: #0f1117;
-      --text: #e7e9ee;
-      --muted: #a9afbd;
-      --line: rgba(255, 255, 255, .10);
-      --line2: rgba(255, 255, 255, .18);
-      --chip: rgba(255, 255, 255, .06);
-      --shadow: 0 18px 60px rgba(0, 0, 0, .45);
-      --radius: 18px;
-      --radius2: 22px;
-      --max: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --cream: #f4f4f2;
+      --apricot: #e9e9e6;
+      --mist: #dededb;
+      --ink: #1a1a1a;
+      --muted: #8a8a86;
+      --peach: #ff4d00;
+      --peach-deep: #d63f00;
+      --screen: #1d1d1b;
+      --r: 24px;
+      --r-sm: 16px;
+      --soft-shadow: 0 14px 40px rgba(63, 58, 54, .08);
+      --max: 1080px;
+      --round: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+      --px: 'DotGothic16', monospace;
     }
 
-    * {
-      box-sizing: border-box
-    }
-
-    html,
-    body {
-      height: 100%
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: var(--sans);
-      background:
-        radial-gradient(900px 500px at 20% 0%, rgba(255, 255, 255, .08), transparent 60%),
-        radial-gradient(900px 500px at 80% 20%, rgba(255, 255, 255, .06), transparent 60%),
-        linear-gradient(180deg, #06070a 0%, var(--bg) 65%, #07080b 100%);
-      color: var(--text);
-      letter-spacing: .2px;
+      font-family: var(--round);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.8;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none
-    }
+    a { color: inherit; text-decoration: none; }
 
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 22px
-    }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 12, 15, .55);
-      border-bottom: 1px solid var(--line);
+    /* ===== 顶部导航（完全复用主页风格） ===== */
+    .teHeader {
+      background: #000;
+      color: #fff;
+      padding: 34px 0 38px;
     }
+    .teHeader a { color: #fff; }
+    .teHeader a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-    .nav {
-      display: flex;
+    /* ★ 对齐修复：baseline 改 center，去掉魔法边距，
+       品牌名和 product/blog/contact 严格一条线（与 index 一致） */
+    .teGrid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1.2fr;
+      gap: 52px;
       align-items: center;
-      justify-content: space-between;
-      height: 66px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', sans-serif;
+      font-weight: 400;
     }
 
-    .brand {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      font-weight: 700;
-      letter-spacing: 1.4px;
-    }
-
-    .logo {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .02));
-      border: 1px solid var(--line2);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .logo:before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, .25), transparent 55%);
-      transform: rotate(18deg);
-    }
-
-    .brand span.small {
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: .6px;
-      font-size: 12px;
-      margin-left: 6px;
-    }
-
-    .navlinks {
-      display: flex;
-      gap: 18px;
-      align-items: center;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .navlinks a {
-      padding: 10px 10px;
-      border-radius: 12px
-    }
-
-    .navlinks a:hover {
-      background: rgba(255, 255, 255, .06);
-      color: var(--text)
-    }
-
-    .navlinks a.active {
-      background: rgba(255, 255, 255, .06);
-      color: var(--text)
-    }
-
-    .cta {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line2);
-      background: rgba(255, 255, 255, .06);
-      color: var(--text);
-      font-size: 14px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      cursor: pointer;
-      user-select: none;
-      white-space: nowrap;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      background: rgba(255, 255, 255, .09);
-      border-color: rgba(255, 255, 255, .28)
-    }
-
-    .btn.primary {
-      background: rgba(255, 255, 255, .92);
-      color: #0b0c0f;
-      border-color: rgba(255, 255, 255, .92);
-    }
-
-    .btn.primary:hover {
-      background: rgba(255, 255, 255, 1)
-    }
-
-    .pill {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .03);
-      padding: 6px 10px;
-      border-radius: 999px;
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .55);
-      box-shadow: 0 0 0 6px rgba(255, 255, 255, .06);
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .04);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .cardInner {
-      padding: 26px
-    }
-
-    .hero {
-      padding: 40px 0 18px
-    }
-
-    .kicker {
-      color: rgba(231, 233, 238, .85);
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: .8px;
+    .teBrand {
+      font-size: clamp(28px, 2.8vw, 38px);
+      line-height: 1;
+      letter-spacing: -.5px;
       text-transform: uppercase;
     }
 
-    h1 {
-      font-size: clamp(28px, 3.6vw, 44px);
-      margin: 10px 0 10px;
-      line-height: 1.08;
-      letter-spacing: -.6px;
+    .teCol {
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+      align-items: center;
     }
 
-    .lead {
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
+    .teCol .icon {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .teCol .icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: #fff;
+      stroke-width: 1.2;
+      fill: none;
+    }
+
+    .teCol h5 {
       margin: 0;
-      max-width: 75ch;
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 400;
+      line-height: 1;
+      text-transform: lowercase;
+      letter-spacing: -.5px;
     }
 
-    /* ====== Markdown 文章排版（轻量但高级） ====== */
+    /* ===== 图标交互 1：拨杆开关（product）=====
+       hover 向左拨，离开后用过冲缓动"弹"回原位 */
+    .lever {
+      transform-box: view-box;
+      transform-origin: 20px 30px;
+      transform: rotate(0deg);
+      transition: transform .55s cubic-bezier(.3, 2.2, .4, .85);
+    }
+
+    .teCol:hover .lever {
+      transform: rotate(-34deg);
+      transition: transform .14s ease-out;
+    }
+
+    /* ===== 图标交互 2：毫米波雷达（blog）=====
+       动画常驻但默认暂停，hover 播放，离开停在当前角度 */
+    .sweep {
+      transform-box: view-box;
+      transform-origin: 20px 20px;
+      animation: te-sweep 1.8s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .teCol:hover .sweep { animation-play-state: running; }
+
+    @keyframes te-sweep {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== 图标交互 3：握手（contact）=====
+       默认分开，hover 合拢相扣并轻晃，离开松开 */
+    .handL,
+    .handR {
+      transition: transform .3s cubic-bezier(.4, 1.4, .5, 1);
+    }
+
+    .handL { transform: translateX(-4.5px); }
+    .handR { transform: translateX(4.5px); }
+
+    .teCol:hover .handL,
+    .teCol:hover .handR { transform: translateX(0); }
+
+    .teCol:hover .shake { animation: te-shake .55s ease-in-out infinite; }
+
+    @keyframes te-shake {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-1.6px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lever, .handL, .handR { transition: none; }
+      .sweep { animation: none; }
+      .teCol:hover .shake { animation: none; }
+    }
+
+    .pxlabel {
+      font-family: var(--px);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--peach-deep);
+    }
+
+    /* ===== 内容区 ===== */
+    .postCard {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 42px 48px;
+      box-shadow: var(--soft-shadow);
+      margin-top: 20px;
+    }
+
     .postMeta {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 12px;
       align-items: center;
-      margin: 12px 0 0;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
     }
 
     .metaText {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: rgba(231, 233, 238, .78);
-      letter-spacing: .6px;
+      font-family: var(--px);
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 1px;
     }
 
     .prose {
-      margin-top: 18px;
-      font-size: 16px;
+      font-size: 17px;
       line-height: 1.9;
-      color: rgba(231, 233, 238, .94);
-      max-width: 92ch;
+      color: var(--ink);
+      max-width: 78ch;
     }
 
-    .prose h1,
-    .prose h2,
-    .prose h3 {
-      letter-spacing: -.4px;
-      margin: 1.2em 0 .5em;
+    .prose h1, .prose h2, .prose h3 {
+      letter-spacing: -.3px;
+      margin: 1.4em 0 .6em;
     }
 
-    .prose h2 {
-      font-size: 22px
-    }
+    .prose h2 { font-size: 24px; }
+    .prose h3 { font-size: 20px; }
 
-    .prose h3 {
-      font-size: 18px
-    }
-
-    .prose p {
-      margin: 0 0 14px
-    }
+    .prose p { margin: 0 0 18px; }
 
     .prose a {
+      color: var(--peach-deep);
       text-decoration: underline;
       text-underline-offset: 3px;
-      color: rgba(255, 255, 255, .92);
-    }
-
-    .prose strong {
-      color: #fff
     }
 
     .prose code {
-      font-family: var(--mono);
-      font-size: 14px;
-      background: rgba(255, 255, 255, .06);
-      border: 1px solid var(--line);
-      padding: 2px 6px;
-      border-radius: 8px;
+      font-family: var(--px);
+      background: var(--apricot);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 15px;
     }
 
     .prose pre {
-      background: rgba(0, 0, 0, .22);
-      border: 1px solid var(--line);
-      padding: 14px;
+      background: #1d1d1b;
+      color: #f4f4f2;
+      padding: 20px;
       border-radius: 16px;
-      overflow: auto;
-      margin: 14px 0 18px;
+      overflow-x: auto;
+      margin: 20px 0;
     }
 
-    .prose pre code {
-      background: none;
-      border: none;
-      padding: 0;
-    }
-
-    .prose blockquote {
-      border-left: 3px solid rgba(255, 255, 255, .18);
-      padding-left: 14px;
-      color: var(--muted);
-      margin: 14px 0 18px;
-    }
-
-    .prose hr {
-      border: none;
-      height: 1px;
-      background: var(--line);
-      margin: 22px 0;
-    }
-
-    .prose ul,
-    .prose ol {
-      margin: 0 0 14px 1.2em;
-      color: rgba(231, 233, 238, .92);
-    }
-
-    .prose li {
-      margin: 6px 0
-    }
-
-    /* ===== Fix: Markdown images should NOT be forced to full width ===== */
     .prose img {
       max-width: 100%;
-      height: auto;
-      width: auto !important;
-      /* 关键：防止被 width:100% 强行放大 */
-      display: block;
-      margin: 16px auto;
       border-radius: 16px;
-      border: 1px solid var(--line);
+      margin: 24px 0;
+      border: 1px solid var(--mist);
     }
 
-    /* 让 Prism 更融入你的网站 */
-    pre[class*="language-"] {
-      border-radius: 16px !important;
-      border: 1px solid var(--line) !important;
-      background: rgba(0, 0, 0, .22) !important;
-      box-shadow: none !important;
-    }
-
-    footer {
-      padding: 28px 0 40px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .foot {
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
+    .backLink {
+      display: inline-flex;
       align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 15px;
+      margin-bottom: 20px;
     }
 
-    .foot a {
-      color: var(--muted)
+    .backLink:hover {
+      color: var(--ink);
     }
 
-    .foot a:hover {
-      color: var(--text)
-    }
-
-    .mono {
-      font-family: var(--mono)
-    }
-
-    @media (max-width: 920px) {
-      .navlinks {
-        display: none;
+    /* ---------- responsive（窄屏头部塌栏） ---------- */
+    @media (max-width: 1000px) {
+      .teGrid {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 30px;
       }
+    }
 
-      .prose {
-        font-size: 15px;
-      }
+    @media (max-width: 560px) {
+      .teGrid { grid-template-columns: 1fr; }
+      .teHeader { padding: 26px 0; }
+      .postCard { padding: 24px; }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Topbar (与 index 一致) -->
-  <div class="topbar">
+  <!-- ===== 顶部导航（与主页完全一致） ===== -->
+  <div class="teHeader">
     <div class="wrap">
-      <div class="nav">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <a href="index.html">GEORIGIN</a> <span class="small">useful • creative • simple</span>
+      <div class="teGrid">
+        <div class="teBrand"><a href="index.html">GEORIGIN</a></div>
+
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40">
+              <rect x="11" y="28" width="18" height="6" rx="2" />
+              <circle cx="20" cy="30" r="1.2" />
+              <g class="lever">
+                <line x1="20" y1="30" x2="20" y2="13" />
+                <circle cx="20" cy="10" r="3.4" />
+              </g>
+            </svg>
+          </div>
+          <h5><a href="index.html#how">product</a></h5>
         </div>
 
-        <nav class="navlinks" aria-label="Primary">
-          <a href="blog.html" class="active">Blog</a>
-          <a href="index.html#timeline">Timeline</a>
-          <a href="index.html#about">About</a>
-          <a href="index.html#contact">Contact</a>
-        </nav>
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40">
+              <circle cx="20" cy="20" r="5" />
+              <circle cx="20" cy="20" r="10" />
+              <circle cx="20" cy="20" r="15" />
+              <circle cx="20" cy="20" r="1.2" />
+              <g class="sweep">
+                <line x1="20" y1="20" x2="20" y2="5" />
+              </g>
+            </svg>
+          </div>
+          <h5><a href="blog.html">blog</a></h5>
+        </div>
 
-        <div class="cta">
-          <a class="btn" href="index.html#product">Explore Easing-Point</a>
-          <a class="btn primary" href="index.html#contact">Get Updates</a>
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40">
+              <g class="shake">
+                <g class="handL">
+                  <line x1="2" y1="20" x2="10" y2="20" />
+                  <rect x="10" y="16" width="12" height="8" rx="3.5" />
+                  <line x1="14" y1="16" x2="14" y2="13" />
+                  <line x1="17" y1="16" x2="17" y2="24" />
+                  <line x1="20" y1="16" x2="20" y2="24" />
+                </g>
+                <g class="handR">
+                  <line x1="38" y1="24" x2="30" y2="24" />
+                  <rect x="18" y="20" width="12" height="8" rx="3.5" />
+                  <line x1="26" y1="28" x2="26" y2="31" />
+                  <line x1="23" y1="20" x2="23" y2="28" />
+                  <line x1="20" y1="20" x2="20" y2="28" />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h5><a href="index.html#contact">contact</a></h5>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Hero（文章头） -->
-  <header class="hero">
-    <div class="wrap">
-      <div class="card">
-        <div class="cardInner">
-          <div class="pill"><span class="dot"></span> GEORIGIN / Blog</div>
-          <h1 id="post-title">Loading…</h1>
-          <p class="lead" id="post-subtitle">
-            Rendering markdown from <span class="mono">posts/</span> via <span class="mono">marked.js</span>.
-          </p>
+  <!-- ===== 文章内容区 ===== -->
+  <main class="wrap" style="padding-top: 40px; padding-bottom: 80px;">
+    <a href="blog.html" class="backLink">← Back to all posts</a>
 
-          <div class="postMeta">
-            <span class="tag" id="post-meta-chip" style="display:none;"></span>
-            <span class="metaText" id="post-meta-text"></span>
-          </div>
-
-          <div class="heroActions" style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" href="blog.html">← Back to Blog</a>
-            <a class="btn" href="index.html">Home</a>
-          </div>
-        </div>
+    <div class="postCard">
+      <div class="postMeta">
+        <span class="pxlabel" id="post-meta-chip" style="display:none;"></span>
+        <span class="metaText" id="post-meta-text"></span>
       </div>
-    </div>
-  </header>
 
-  <!-- Content -->
-  <main class="wrap" style="padding: 0 22px 26px;">
-    <div class="card">
-      <div class="cardInner">
-        <section id="post-content" class="prose">
-          Loading content…
-        </section>
+      <h1 id="post-title" style="margin: 12px 0 24px; font-size: clamp(28px, 3.2vw, 42px);"></h1>
+
+      <div id="post-content" class="prose">
+        Loading content…
       </div>
     </div>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div class="foot">
-        <div>© <span id="y"></span> GEORIGIN. All rights reserved.</div>
-        <div class="mono">
-          <a href="index.html#product">Easing-Point</a> ·
-          <a href="blog.html">Blog</a> ·
-          <a href="index.html#contact">Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+    document.getElementById('y') && (document.getElementById('y').textContent = new Date().getFullYear());
 
-    // 读取 ?p=xxx.md
     const params = new URLSearchParams(window.location.search);
     const file = params.get("p");
 
     const contentEl = document.getElementById("post-content");
     const titleEl = document.getElementById("post-title");
-    const subEl = document.getElementById("post-subtitle");
     const metaText = document.getElementById("post-meta-text");
     const metaChip = document.getElementById("post-meta-chip");
 
-    // marked 的基本配置：让代码块更“像代码”
-    marked.setOptions({
-      breaks: false,
-      gfm: true
-    });
+    marked.setOptions({ breaks: false, gfm: true });
 
     function setMeta(text) {
       if (!text) return;
       metaText.textContent = text;
-      // 如果 meta 里带 Λ ⊗ Σ 这种符号，放到 chip 更有“极客味”
       if (/[Λ⊗Σ]/.test(text)) {
         metaChip.style.display = "inline-flex";
-        metaChip.className = "tag";
         metaChip.textContent = text.match(/[Λ⊗Σ].*/)?.[0] ?? "Λ ⊗ Σ";
       }
     }
 
     if (!file) {
       titleEl.innerText = "No post specified";
-      subEl.innerText = "Use: posts.html?p=filename.md";
-      contentEl.innerText = "Please provide a markdown file via ?p=filename.md";
+      contentEl.innerText = "Please use ?p=filename.md";
     } else {
       fetch(`posts/${file}`)
         .then(res => {
@@ -519,11 +383,10 @@
           return res.text();
         })
         .then(md => {
-          // 渲染 Markdown
           const html = marked.parse(md);
           contentEl.innerHTML = html;
 
-          // 自动提取标题（第一个 h1）
+          // 提取标题
           const h1 = contentEl.querySelector("h1");
           if (h1) {
             titleEl.innerText = h1.innerText;
@@ -532,30 +395,23 @@
             titleEl.innerText = file.replace(".md", "");
           }
 
-          // 自动提取 meta（第一段 strong / 或第一行）
+          // 提取 meta
           const firstStrong = contentEl.querySelector("strong");
           if (firstStrong) {
             setMeta(firstStrong.innerText);
             firstStrong.remove();
-          } else {
-            setMeta(file.replace(".md", ""));
           }
 
-          subEl.innerHTML = `Source: <span class="mono">posts/${file}</span>`;
-
-          // Prism 代码高亮
+          // 代码高亮
           if (window.Prism) Prism.highlightAll();
         })
         .catch(() => {
           titleEl.innerText = "Post not found";
-          subEl.innerText = `Missing: posts/${file}`;
+          contentEl.innerText = `posts/${file} does not exist.`;
           metaText.textContent = "";
-          metaChip.style.display = "none";
-          contentEl.innerText = "The requested markdown file does not exist.";
         });
     }
   </script>
 
 </body>
-
 </html>

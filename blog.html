@@ -4,324 +4,354 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GEORIGIN Blog</title>
+  <title>GEORIGIN — Blog</title>
   <meta name="description" content="Build logs, notes, and field reports from GEORIGIN." />
-  <meta name="theme-color" content="#0b0c0f" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=DotGothic16&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0b0c0f;
-      --text: #e7e9ee;
-      --muted: #a9afbd;
-      --line: rgba(255, 255, 255, .10);
-      --line2: rgba(255, 255, 255, .18);
-      --chip: rgba(255, 255, 255, .06);
-      --shadow: 0 18px 60px rgba(0, 0, 0, .45);
-      --radius: 18px;
-      --radius2: 22px;
-      --max: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --cream: #f4f4f2;
+      --apricot: #e9e9e6;
+      --mist: #dededb;
+      --ink: #1a1a1a;
+      --muted: #8a8a86;
+      --peach: #ff4d00;
+      --peach-deep: #d63f00;
+      --r: 24px;
+      --soft-shadow: 0 14px 40px rgba(63, 58, 54, .08);
+      --max: 1080px;
+      --round: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+      --px: 'DotGothic16', monospace;
     }
 
-    * { box-sizing: border-box }
-    html, body { height: 100% }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
-      font-family: var(--sans);
-      background:
-        radial-gradient(900px 500px at 20% 0%, rgba(255, 255, 255, .08), transparent 60%),
-        radial-gradient(900px 500px at 80% 20%, rgba(255, 255, 255, .06), transparent 60%),
-        linear-gradient(180deg, #06070a 0%, var(--bg) 65%, #07080b 100%);
-      color: var(--text);
-      letter-spacing: .2px;
+      font-family: var(--round);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.8;
     }
 
-    a { color: inherit; text-decoration: none }
+    a { color: inherit; text-decoration: none; }
 
-    .wrap {
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 0 22px
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+
+    /* 顶部导航 */
+    .teHeader {
+      background: #000;
+      color: #fff;
+      padding: 34px 0 38px;
     }
+    .teHeader a { color: #fff; }
+    .teHeader a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 12, 15, .55);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .nav {
-      display: flex;
+    /* ★ 对齐修复：baseline 改 center，去掉魔法边距，
+       品牌名和 product/blog/contact 严格一条线（与 index/posts 一致） */
+    .teGrid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1.2fr;
+      gap: 52px;
       align-items: center;
-      justify-content: space-between;
-      height: 66px;
+      font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', sans-serif;
+      font-weight: 400;
     }
 
-    .brand {
+    .teBrand {
+      font-size: clamp(28px, 2.8vw, 38px);
+      line-height: 1;
+      letter-spacing: -.5px;
+      text-transform: uppercase;
+    }
+
+    .teCol {
       display: flex;
-      gap: 12px;
-      align-items: center;
-      font-weight: 700;
-      letter-spacing: 1.4px;
-    }
-
-    .logo {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .02));
-      border: 1px solid var(--line2);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .logo:before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, .25), transparent 55%);
-      transform: rotate(18deg);
-    }
-
-    .brand span.small {
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: .6px;
-      font-size: 12px;
-      margin-left: 6px;
-    }
-
-    .navlinks {
-      display: flex;
+      flex-direction: row;
       gap: 18px;
       align-items: center;
-      color: var(--muted);
-      font-size: 14px;
     }
 
-    .navlinks a {
-      padding: 10px 10px;
-      border-radius: 12px
-    }
-
-    .navlinks a:hover {
-      background: rgba(255, 255, 255, .06);
-      color: var(--text)
-    }
-
-    .btn {
-      display: inline-flex;
+    .teCol .icon {
+      flex-shrink: 0;
+      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 10px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line2);
-      background: rgba(255, 255, 255, .06);
-      color: var(--text);
-      font-size: 14px;
     }
 
-    .btn:hover {
-      background: rgba(255, 255, 255, .09);
-      border-color: rgba(255, 255, 255, .28)
+    .teCol .icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: #fff;
+      stroke-width: 1.2;
+      fill: none;
     }
 
-    .btn.primary {
-      background: rgba(255, 255, 255, .92);
-      color: #0b0c0f;
-      border-color: rgba(255, 255, 255, .92);
-    }
-
-    .hero { padding: 64px 0 16px }
-
-    .card {
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .04);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .cardInner { padding: 26px }
-
-    h1 {
-      font-size: clamp(32px, 4vw, 48px);
-      margin: 0 0 10px;
-      line-height: 1.05;
-      letter-spacing: -.6px;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.7;
+    .teCol h5 {
       margin: 0;
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 400;
+      line-height: 1;
+      text-transform: lowercase;
+      letter-spacing: -.5px;
     }
 
-    .list { padding: 18px 0 40px }
+    /* ===== 图标交互 1：拨杆开关（product）=====
+       hover 向左拨，离开后用过冲缓动"弹"回原位 */
+    .lever {
+      transform-box: view-box;
+      transform-origin: 20px 30px;
+      transform: rotate(0deg);
+      transition: transform .55s cubic-bezier(.3, 2.2, .4, .85);
+    }
 
-    /* ✅ 关键：让列表里的条目按列排列，而不是“裸 a” */
-    main.list .wrap {
+    .teCol:hover .lever {
+      transform: rotate(-34deg);
+      transition: transform .14s ease-out;
+    }
+
+    /* ===== 图标交互 2：毫米波雷达（blog）=====
+       动画常驻但默认暂停，hover 播放，离开停在当前角度 */
+    .sweep {
+      transform-box: view-box;
+      transform-origin: 20px 20px;
+      animation: te-sweep 1.8s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .teCol:hover .sweep { animation-play-state: running; }
+
+    @keyframes te-sweep {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== 图标交互 3：握手（contact）=====
+       默认分开，hover 合拢相扣并轻晃，离开松开 */
+    .handL,
+    .handR {
+      transition: transform .3s cubic-bezier(.4, 1.4, .5, 1);
+    }
+
+    .handL { transform: translateX(-4.5px); }
+    .handR { transform: translateX(4.5px); }
+
+    .teCol:hover .handL,
+    .teCol:hover .handR { transform: translateX(0); }
+
+    .teCol:hover .shake { animation: te-shake .55s ease-in-out infinite; }
+
+    @keyframes te-shake {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-1.6px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .lever, .handL, .handR { transition: none; }
+      .sweep { animation: none; }
+      .teCol:hover .shake { animation: none; }
+    }
+
+    .pxlabel {
+      font-family: var(--px);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--peach-deep);
+    }
+
+    .pageTitle {
+      font-size: clamp(32px, 3.8vw, 48px);
+      margin: 0 0 12px;
+    }
+
+    .pageLead {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 60ch;
+    }
+
+    .postList {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
+      padding: 20px 0 80px;
     }
 
-    /* Blog post card */
-    a.post {
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      background: rgba(255, 255, 255, .03);
-      padding: 18px;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 14px;
+    .postCard {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 28px 32px;
+      box-shadow: var(--soft-shadow);
+      transition: transform .2s ease;
+      display: block;
     }
 
-    a.post:hover {
-      border-color: rgba(255, 255, 255, .22);
-      background: rgba(255, 255, 255, .04);
+    .postCard:hover {
+      transform: translateY(-4px);
     }
 
-    .meta {
-      color: rgba(231, 233, 238, .82);
-      font-size: 12px;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      font-family: var(--mono);
+    .postDate {
+      font-family: var(--px);
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 1.5px;
       margin-bottom: 8px;
     }
 
-    .title {
-      font-size: 16px;
-      letter-spacing: -.2px;
-      margin: 0 0 8px;
-      line-height: 1.35;
+    .postTitle {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0 0 10px;
     }
 
-    .excerpt {
+    .postExcerpt {
       color: var(--muted);
-      font-size: 13px;
+      font-size: 15.5px;
       line-height: 1.7;
       margin: 0;
-      max-width: 80ch;
     }
 
-    .tag {
-      border: 1px solid var(--line);
-      background: var(--chip);
-      color: var(--muted);
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-family: var(--mono);
-      height: fit-content;
-      white-space: nowrap;
-      align-self: start;
+    /* ---------- responsive（窄屏头部塌栏） ---------- */
+    @media (max-width: 1000px) {
+      .teGrid {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 30px;
+      }
     }
 
-    footer {
-      padding: 28px 0 40px;
-      color: var(--muted);
-      font-size: 13px;
+    @media (max-width: 560px) {
+      .teGrid { grid-template-columns: 1fr; }
+      .teHeader { padding: 26px 0; }
+      .postCard { padding: 22px; }
     }
 
-    .foot {
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .mono { font-family: var(--mono) }
-
-    @media (max-width: 920px) {
-      .navlinks { display: none; }
-      a.post { grid-template-columns: 1fr; }
-      .tag { justify-self: start; }
+    @media (prefers-reduced-motion: reduce) {
+      .postCard { transition: none; }
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar">
+
+  <!-- 顶部导航（与 index/posts 完全一致） -->
+  <div class="teHeader">
     <div class="wrap">
-      <div class="nav">
-        <div class="brand">
-          <div class="logo" aria-hidden="true"></div>
-          <a href="index.html">GEORIGIN</a> <span class="small">blog</span>
+      <div class="teGrid">
+        <div class="teBrand"><a href="index.html">GEORIGIN</a></div>
+
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <!-- 拨杆开关：底座 + 枢轴 + 杆 + 旋钮，hover 左拨，离开回弹 -->
+            <svg viewBox="0 0 40 40">
+              <rect x="11" y="28" width="18" height="6" rx="2" />
+              <circle cx="20" cy="30" r="1.2" />
+              <g class="lever">
+                <line x1="20" y1="30" x2="20" y2="13" />
+                <circle cx="20" cy="10" r="3.4" />
+              </g>
+            </svg>
+          </div>
+          <h5><a href="index.html#how">product</a></h5>
         </div>
-        <nav class="navlinks" aria-label="Primary">
-          <a href="blog.html">Blog</a>
-          <a href="index.html#timeline">Timeline</a>
-          <a href="index.html#contact">Contact</a>
-        </nav>
-        <div class="cta">
-          <a class="btn" href="index.html">Back</a>
-          <a class="btn primary" href="index.html#contact">Get Updates</a>
+
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <!-- 毫米波雷达：同心圆一圈一圈 + hover 时扫描线旋转 -->
+            <svg viewBox="0 0 40 40">
+              <circle cx="20" cy="20" r="5" />
+              <circle cx="20" cy="20" r="10" />
+              <circle cx="20" cy="20" r="15" />
+              <circle cx="20" cy="20" r="1.2" />
+              <g class="sweep">
+                <line x1="20" y1="20" x2="20" y2="5" />
+              </g>
+            </svg>
+          </div>
+          <h5><a href="blog.html">blog</a></h5>
+        </div>
+
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <!-- 握手：左右两只手，hover 合拢相扣并轻晃，离开松开 -->
+            <svg viewBox="0 0 40 40">
+              <g class="shake">
+                <g class="handL">
+                  <line x1="2" y1="20" x2="10" y2="20" />
+                  <rect x="10" y="16" width="12" height="8" rx="3.5" />
+                  <line x1="14" y1="16" x2="14" y2="13" />
+                  <line x1="17" y1="16" x2="17" y2="24" />
+                  <line x1="20" y1="16" x2="20" y2="24" />
+                </g>
+                <g class="handR">
+                  <line x1="38" y1="24" x2="30" y2="24" />
+                  <rect x="18" y="20" width="12" height="8" rx="3.5" />
+                  <line x1="26" y1="28" x2="26" y2="31" />
+                  <line x1="23" y1="20" x2="23" y2="28" />
+                  <line x1="20" y1="20" x2="20" y2="28" />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h5><a href="index.html#contact">contact</a></h5>
         </div>
       </div>
     </div>
   </div>
 
-  <header class="hero">
+  <header style="padding: 48px 0 32px;">
     <div class="wrap">
-      <div class="card">
-        <div class="cardInner">
-          <h1>Build Notes</h1>
-          <p class="lead">Short posts about prototypes, design decisions, algorithms, and systems thinking.</p>
-        </div>
-      </div>
+      <span class="pxlabel">FROM THE WORKBENCH</span>
+      <h1 class="pageTitle">Build Notes</h1>
+      <p class="pageLead">All build logs and development notes, sorted by date.</p>
     </div>
   </header>
 
-  <main class="list">
-    <div class="wrap">
-
-      <!-- ✅ 复制这个 <a class="post"> 块来新增文章条目 -->
-      <a class="post" href="posts.html?p=2026-01-07.md">
-        <div>
-          <div class="meta">2026-01-07</div>
-          <h2 class="title">I replaced the millimeter-wave radar sensor and hired a new designer to redesign the exterior</h2>
-          
-        </div>
-        
-      </a>
-
-      <a class="post" href="posts.html?p=2026-01-02.md">
-        <div>
-          <div class="meta">2026-01-02</div>
-          <h2 class="title">Where This Project Started: An Apple Watch Band Rash</h2>
-          
-        </div>
-        
-      </a>
-
+  <main class="wrap">
+    <div class="postList" id="post-list">
+      <!-- JS 动态生成所有文章列表 -->
     </div>
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div class="foot">
-        <div>© <span id="y"></span> GEORIGIN. All rights reserved.</div>
-        <div class="mono"><a href="index.html">Home</a> · <a href="blog.html">Blog</a></div>
-      </div>
-    </div>
-  </footer>
-
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
-</body>
+    async function loadAllPosts() {
+      try {
+        const res = await fetch('posts.json');
+        if (!res.ok) throw new Error('posts.json not found');
 
+        let posts = await res.json();
+
+        // 按日期倒序排序
+        posts.sort((a, b) => b.date.localeCompare(a.date));
+
+        const container = document.getElementById('post-list');
+        container.innerHTML = '';
+
+        posts.forEach(post => {
+          const card = document.createElement('a');
+          card.className = 'postCard';
+          card.href = `posts.html?p=${post.slug}`;
+
+          card.innerHTML = `
+            <div class="postDate">${post.date}</div>
+            <h2 class="postTitle">${post.title}</h2>
+            <p class="postExcerpt">${post.excerpt}</p>
+          `;
+
+          container.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error(err);
+        document.getElementById('post-list').innerHTML = 
+          '<p style="color:#888;">无法加载文章列表，请检查 posts.json 文件。</p>';
+      }
+    }
+
+    loadAllPosts();
+  </script>
+
+</body>
 </html>

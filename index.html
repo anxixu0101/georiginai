@@ -2,798 +2,567 @@
 <html lang="en">
 
 <head>
-  <!-- Favicons -->
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-  <!-- Organization Logo for Google -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "GEORIGIN",
-  "url": "https://georiginai.com/",
-  "logo": "https://georiginai.com/assets/images/logo.jpg"
-}
-</script>
-
-
-  <link rel="canonical" href="https://georiginai.com/" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GEORIGIN — Useful. Creative. Simple.</title>
-  <meta name="description"
-    content="GEORIGIN builds useful, creative, simple products. Easing-Point: a desktop device that detects sedentary behavior without contact and shows heart rate." />
-  <meta name="theme-color" content="#0b0c0f" />
+  <title>Easing-Point — TE 色系 · 首页视觉框架</title>
+  <meta name="description" content="Visual framework mockup: soft base with pixel accents." />
+  <meta name="theme-color" content="#faf7f2" />
 
-  <!-- Optional: social preview -->
-  <meta property="og:title" content="GEORIGIN — Useful. Creative. Simple." />
-  <meta property="og:description"
-    content="Easing-Point is coming soon: a desktop device that detects sedentary behavior without contact and shows heart rate." />
-  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&family=DotGothic16&display=swap"
+    rel="stylesheet">
 
   <style>
     :root {
-      --bg: #0b0c0f;
-      --panel: #0f1117;
-      --text: #e7e9ee;
-      --muted: #a9afbd;
-      --line: rgba(255, 255, 255, .10);
-      --line2: rgba(255, 255, 255, .18);
-      --chip: rgba(255, 255, 255, .06);
-      --shadow: 0 18px 60px rgba(0, 0, 0, .45);
-      --radius: 18px;
-      --radius2: 22px;
-      --max: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      --cream: #f4f4f2;
+      --apricot: #e9e9e6;
+      --mist: #dededb;
+      --ink: #1a1a1a;
+      --muted: #8a8a86;
+      --peach: #ff4d00;
+      --peach-deep: #d63f00;
+      --screen: #1d1d1b;
+      --pixel: #ff4d00;
+      --r: 24px;
+      --soft-shadow: 0 14px 40px rgba(63, 58, 54, .08);
+      --soft-shadow-lg: 0 24px 70px rgba(63, 58, 54, .10);
+      --max: 1080px;
+      --round: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', sans-serif;
+      --px: 'DotGothic16', monospace;
     }
 
     * {
-      box-sizing: border-box
-    }
-
-    html,
-    body {
-      height: 100%
+      box-sizing: border-box;
     }
 
     body {
       margin: 0;
-      font-family: var(--sans);
-      background:
-        radial-gradient(900px 500px at 20% 0%, rgba(255, 255, 255, .08), transparent 60%),
-        radial-gradient(900px 500px at 80% 20%, rgba(255, 255, 255, .06), transparent 60%),
-        linear-gradient(180deg, #06070a 0%, var(--bg) 65%, #07080b 100%);
-      color: var(--text);
-      letter-spacing: .2px;
+      font-family: var(--round);
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.8;
     }
 
     a {
       color: inherit;
-      text-decoration: none
+      text-decoration: none;
     }
 
     .wrap {
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 22px
+      padding: 0 24px;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(14px);
-      background: rgba(11, 12, 15, .55);
-      border-bottom: 1px solid var(--line);
+    :focus-visible {
+      outline: 2px dashed var(--peach);
+      outline-offset: 3px;
     }
 
-    .nav {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-      /* 控制各项之间间距 */
-    }
-
-    .brand {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      font-weight: 700;
-      letter-spacing: 1.4px;
-    }
-
-    .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background:
-        linear-gradient(135deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, .02));
-      border: 1px solid var(--line2);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    .logo:before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at 35% 35%, rgba(255, 255, 255, .25), transparent 55%);
-      transform: rotate(18deg);
-    }
-
-    .brand span.small {
-      font-family: var(--mono);
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: .6px;
+    .pxlabel {
+      font-family: var(--px);
       font-size: 12px;
-      margin-left: 6px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--peach-deep);
     }
 
-    .navlinks {
+    .teHeader {
+      background: #000;
+      color: #fff;
+      padding: 34px 0 38px;
+    }
+
+    .teHeader a {
+      color: #fff;
+    }
+
+    .teHeader a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* ★ 对齐修复：baseline 改 center，去掉魔法边距，
+       品牌名和 product/blog/contact 严格一条线 */
+    .teGrid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr 1fr 1.2fr;
+      gap: 52px;
+      align-items: center;
+      font-family: 'Helvetica Neue', Helvetica, Arial, 'Hiragino Sans', sans-serif;
+      font-weight: 400;
+    }
+
+    .teBrand {
+      font-size: clamp(28px, 2.8vw, 38px);
+      line-height: 1;
+      letter-spacing: -.5px;
+      text-transform: uppercase;
+    }
+
+    .teCol {
       display: flex;
+      flex-direction: row;
       gap: 18px;
       align-items: center;
-      color: var(--muted);
-      font-size: 18px;
     }
 
-    .navlinks a {
-      padding: 10px 10px;
-      border-radius: 12px
-    }
-
-    .navlinks a:hover {
-      background: rgba(255, 255, 255, .06);
-      color: var(--text)
-    }
-
-    .cta {
+    .teCol .icon {
+      flex-shrink: 0;
       display: flex;
-      gap: 10px;
       align-items: center;
+    }
+
+    .teCol .icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: #fff;
+      stroke-width: 1.2;
+      fill: none;
+    }
+
+    .teCol h5 {
+      margin: 0;
+      font-size: clamp(24px, 2.4vw, 32px);
+      font-weight: 400;
+      line-height: 1;
+      text-transform: lowercase;
+      letter-spacing: -.5px;
+    }
+
+    /* ===== 图标交互 1：拨杆开关（product）=====
+       hover 向左拨，离开后用过冲缓动"弹"回原位 */
+    .lever {
+      transform-box: view-box;
+      transform-origin: 20px 30px;
+      transform: rotate(0deg);
+      transition: transform .55s cubic-bezier(.3, 2.2, .4, .85);
+    }
+
+    .teCol:hover .lever {
+      transform: rotate(-34deg);
+      transition: transform .14s ease-out;
+    }
+
+    /* ===== 图标交互 2：毫米波雷达（blog）=====
+       动画常驻但默认暂停，hover 播放，离开停在当前角度 */
+    .sweep {
+      transform-box: view-box;
+      transform-origin: 20px 20px;
+      animation: te-sweep 1.8s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .teCol:hover .sweep {
+      animation-play-state: running;
+    }
+
+    @keyframes te-sweep {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ===== 图标交互 3：握手（contact）=====
+       默认分开，hover 合拢相扣并轻晃，离开松开 */
+    .handL,
+    .handR {
+      transition: transform .3s cubic-bezier(.4, 1.4, .5, 1);
+    }
+
+    .handL {
+      transform: translateX(-4.5px);
+    }
+
+    .handR {
+      transform: translateX(4.5px);
+    }
+
+    .teCol:hover .handL,
+    .teCol:hover .handR {
+      transform: translateX(0);
+    }
+
+    .teCol:hover .shake {
+      animation: te-shake .55s ease-in-out infinite;
+    }
+
+    @keyframes te-shake {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-1.6px);
+      }
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 14px;
-      border: 1px solid var(--line2);
-      background: rgba(255, 255, 255, .06);
-      color: var(--text);
-      font-size: 14px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      gap: 8px;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 999px;
+      background: var(--peach);
+      color: #fff;
+      font-family: var(--round);
+      font-weight: 700;
+      font-size: 15px;
       cursor: pointer;
-      user-select: none;
-      white-space: nowrap;
+      box-shadow: 0 8px 20px rgba(255, 77, 0, .3);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
 
     .btn:hover {
-      transform: translateY(-1px);
-      background: rgba(255, 255, 255, .09);
-      border-color: rgba(255, 255, 255, .28)
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(255, 77, 0, .4);
     }
 
-    .btn.primary {
-      background: rgba(255, 255, 255, .92);
-      color: #0b0c0f;
-      border-color: rgba(255, 255, 255, .92);
-    }
-
-    .btn.primary:hover {
-      background: rgba(255, 255, 255, 1)
-    }
-
-    .pill {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--muted);
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .03);
-      padding: 6px 10px;
+    .subscribe {
+      display: flex;
+      gap: 10px;
+      max-width: 460px;
+      background: #fff;
       border-radius: 999px;
-      display: inline-flex;
-      gap: 8px;
+      padding: 8px;
+      box-shadow: var(--soft-shadow);
+    }
+
+    .subNote {
+      margin-top: 14px;
+      font-size: 14.5px;
+      color: var(--muted);
+      display: flex;
       align-items: center;
+      gap: 8px;
     }
 
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .55);
-      box-shadow: 0 0 0 6px rgba(255, 255, 255, .06);
+    /* 像素小心心 */
+    .pxheart {
+      width: 14px;
+      height: 12px;
+      display: inline-block;
+      background: var(--peach);
+      clip-path: polygon(0% 17%, 17% 0%, 33% 0%, 50% 17%, 67% 0%, 83% 0%, 100% 17%,
+          100% 50%, 50% 100%, 0% 50%);
+      flex: 0 0 auto;
     }
 
-    /* hero */
     .hero {
-      padding: 64px 0 28px
-    }
-
-    .heroTitle {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 32px auto;
+      padding: 56px 0 40px;
     }
 
     .heroGrid {
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    /* sections */
-    section.block {
-      padding: 22px 0
-    }
-
-    .grid3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-
-    .mini {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(255, 255, 255, .03);
-      padding: 16px;
-    }
-
-    .mini h3 {
-      margin: 0 0 8px;
-      font-size: 14px;
-      letter-spacing: .2px;
-    }
-
-    .mini p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    footer {
-      padding: 28px 0 40px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .foot {
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .foot a {
-      color: var(--muted)
-    }
-
-    .foot a:hover {
-      color: var(--text)
-    }
-
-    .mono {
-      font-family: var(--mono)
-    }
-
-    .kicker {
-      color: rgba(231, 233, 238, .85);
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-    }
-
-    /* Timeline (vertical line + cards) */
-    .timeline {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-top: 12px;
-      padding-left: 26px;
-      /* space for line + dots */
-    }
-
-    .timeline:before {
-      content: "";
-      position: absolute;
-      left: 10px;
-      top: 2px;
-      bottom: 2px;
-      width: 2px;
-      background: linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .04));
-      border-radius: 999px;
-    }
-
-    .tItem {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-
-    .tItem:before {
-      content: "";
-      position: absolute;
-      left: -26px;
-      top: 18px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, .70);
-      box-shadow: 0 0 0 6px rgba(255, 255, 255, .06);
-      border: 1px solid rgba(255, 255, 255, .18);
-    }
-
-    .tCard {
-      flex: 1 1 auto;
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      background: rgba(255, 255, 255, .03);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .tCardInner {
-      padding: 18px;
-      display: grid;
       grid-template-columns: 1.05fr .95fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .tMeta {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-width: 0;
-    }
-
-    .tDate {
-      display: inline-flex;
+      gap: 48px;
       align-items: center;
-      gap: 10px;
-      color: rgba(231, 233, 238, .82);
-      font-size: 12px;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      font-family: var(--mono);
     }
 
-    .tTitle {
-      font-size: 16px;
-      letter-spacing: -.2px;
-      margin: 0;
-    }
-
-    .tText {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-      max-width: 70ch;
-      margin: 0;
-    }
-
-    .tMedia {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(0, 0, 0, .16);
-      overflow: hidden;
-      aspect-ratio: 4 / 3;
-      /* keeps cards consistent, avoids empty space */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .tImg {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: none;
-      opacity: 1;
-      transition: transform .25s ease;
-    }
-
-    .tMedia:hover .tImg {
-      transform: scale(1.02);
-    }
-
-    /* ===== Hero newsletter block (big) ===== */
-    .subscribeHero {
-      margin-bottom: 16px;
-      padding: 100px 22px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, .03);
-      width: 100%;
-    }
-
-    .socials {
-      display: flex;
-      gap: 12px;
-      align-items: center;
-      margin-left: 10px;
-    }
-
-    .socials a {
-      width: 40px;
-      height: 40px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 10px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, .03);
-      transition: all .2s ease;
-    }
-
-    .socials a:hover {
-      background: rgba(255, 255, 255, .08);
-      border-color: var(--line2);
-      transform: translateY(-1px);
-    }
-
-    .socials svg {
-      width: 16px;
-      height: 16px;
-      fill: var(--muted);
-    }
-
-    .socials a:hover svg {
-      fill: var(--text);
-    }
-
-    .subscribeHeroTitle {
-      font-size: 30px;
+    h1 {
+      font-size: clamp(34px, 4.6vw, 52px);
       font-weight: 700;
-      letter-spacing: .6px;
-      margin-top: 6px;
+      line-height: 1.35;
+      margin: 14px 0 18px;
+      letter-spacing: .5px;
     }
 
-    .subscribeHeroSub {
+    h1 em {
+      color: var(--peach-deep);
+      font-style: normal;
+    }
+
+    .lead {
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-      margin-top: 6px;
+      font-size: 17px;
+      margin: 0 0 30px;
+      max-width: 46ch;
     }
 
-    /* ✅ 关键：让 subscribe 横跨 heroGrid 两列（桌面两列布局时） */
-    @media (min-width: 921px) {
-      .heroGrid>#subscribe.subscribeHero {
-        grid-column: 1 / -1;
-      }
+    .device {
+      position: relative;
+      background: linear-gradient(160deg, #e3e3e0, #cfcfcb);
+      border-radius: 32px;
+      padding: 26px;
+      box-shadow: var(--soft-shadow-lg), inset 0 1px 0 rgba(255, 255, 255, .7);
     }
 
-    /* MailerLite embed: make it match your dark style */
-    #mlb2-35246848.ml-form-embedContainer {
-      width: 100% !important;
-      margin: 12px 0 0 0 !important;
-      display: block !important;
+    .videoBand {
+      background: #1d1d1b;
+      border-radius: 40px;
+      padding: 48px;
     }
 
-    #mlb2-35246848 .ml-form-embedWrapper {
-      width: 100% !important;
-      max-width: 100% !important;
-      background: rgba(0, 0, 0, .10) !important;
-      border: 1px solid var(--line) !important;
-      border-radius: 16px !important;
-      padding: 12px !important;
+    .videoBand h2 {
+      color: #fff;
     }
 
-    #mlb2-35246848 .ml-form-embedBody,
-    #mlb2-35246848 .ml-form-successBody {
-      padding: 0 !important;
-    }
-
-    #mlb2-35246848 .ml-form-embedContent {
-      display: none !important;
-    }
-
-    #mlb2-35246848 input.form-control {
-      width: 100% !important;
-      background: rgba(255, 255, 255, .06) !important;
-      color: var(--text) !important;
-      border: 1px solid rgba(255, 255, 255, .14) !important;
-      border-radius: 14px !important;
-      padding: 14px 14px !important;
-      font-size: 14px !important;
-      outline: none !important;
-    }
-
-    #mlb2-35246848 input.form-control::placeholder {
-      color: rgba(231, 233, 238, .55) !important;
-    }
-
-    #mlb2-35246848 .ml-form-embedSubmit {
-      margin: 0 !important;
-      width: 100% !important;
-    }
-
-    #mlb2-35246848 .ml-form-embedSubmit button.primary {
-      width: 100% !important;
-      padding: 14px 14px !important;
-      font-size: 14px !important;
-      font-weight: 700 !important;
-      border-radius: 14px !important;
-      border: 1px solid rgba(255, 255, 255, .92) !important;
-      background: rgba(255, 255, 255, .92) !important;
-      color: #0b0c0f !important;
-      cursor: pointer !important;
-      margin-top: 10px !important;
-    }
-
-    #mlb2-35246848 .ml-form-embedSubmit button.primary:hover {
-      background: rgba(255, 255, 255, 1) !important;
-    }
-
-    #mlb2-35246848 .ml-form-successContent h4 {
-      margin: 0 0 6px 0 !important;
-      font-size: 14px !important;
-      color: var(--text) !important;
-      font-family: var(--mono) !important;
-      letter-spacing: .2px !important;
-    }
-
-    #mlb2-35246848 .ml-form-successContent p {
-      margin: 0 !important;
-      color: var(--muted) !important;
-      font-size: 13px !important;
-      line-height: 1.6 !important;
-    }
-
-    /* Desktop: input + button inline */
-    @media (min-width: 720px) {
-      #mlb2-35246848 form.ml-block-form {
-        display: flex !important;
-        gap: 10px !important;
-        align-items: center !important;
-      }
-
-      #mlb2-35246848 .ml-form-formContent {
-        flex: 1 1 auto !important;
-        margin: 0 !important;
-      }
-
-      #mlb2-35246848 .ml-form-embedSubmit {
-        flex: 0 0 180px !important;
-      }
-
-      #mlb2-35246848 .ml-form-embedSubmit button.primary {
-        margin-top: 0 !important;
-      }
-    }
-
-
-    /* ===== Insights (Blog + Video) ===== */
-    .insightsGrid {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 14px;
-      margin-top: 12px;
-      align-items: stretch;
-    }
-
-    .videoCard {
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      background: rgba(255, 255, 255, .03);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
-    }
-
-    .videoTop {
-      padding: 16px 16px 0 16px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .videoTitle {
-      margin: 0;
-      font-size: 16px;
-      letter-spacing: -.2px;
-    }
-
-    .videoDesc {
-      margin: 10px 16px 0 16px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .videoFrame {
-      margin: 14px 16px 16px 16px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: rgba(0, 0, 0, .16);
-      overflow: hidden;
+    .videoEmbed {
       aspect-ratio: 16 / 9;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, .35);
     }
 
-    .videoFrame iframe {
+    .videoEmbed iframe {
       width: 100%;
       height: 100%;
       border: 0;
       display: block;
     }
 
-    .postList {
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      background: rgba(255, 255, 255, .03);
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .block {
+      padding: 56px 0;
+    }
+
+    .blockHead {
+      max-width: 60ch;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      margin: 10px 0 12px;
+      line-height: 1.5;
+    }
+
+    .blockHead p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 15.5px;
+    }
+
+    .notesRow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .noteCard {
+      background: #fff;
+      border-radius: var(--r);
+      padding: 26px;
+      box-shadow: var(--soft-shadow);
       display: flex;
       flex-direction: column;
-    }
-
-    .postListHead {
-      padding: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       gap: 10px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, .02);
+      transition: transform .2s ease;
     }
 
-    .postListHead h3 {
+    .noteCard:hover {
+      transform: translateY(-3px);
+    }
+
+    .noteDate {
+      font-family: var(--px);
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: var(--muted);
+    }
+
+    .noteCard h3 {
       margin: 0;
+      font-size: 17.5px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .noteCard p {
+      margin: 0;
+      color: var(--muted);
       font-size: 14px;
-      letter-spacing: .2px;
-      color: rgba(231, 233, 238, .92);
     }
 
-    .postCards {
-      padding: 16px;
+    .noteMore {
+      color: var(--peach-deep);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .ending {
+      text-align: center;
+      background: linear-gradient(180deg, transparent, var(--mist) 140%);
+      border-radius: 40px;
+      padding: 64px 24px;
+    }
+
+    .ending .subscribe {
+      margin: 26px auto 0;
+    }
+
+    .socialRow {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 30px;
     }
 
-    .postCard {
-      border: 1px solid var(--line);
-      border-radius: var(--radius2);
-      background: rgba(255, 255, 255, .02);
-      padding: 14px;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-    }
-
-    .postCard:hover {
-      transform: translateY(-1px);
-      background: rgba(255, 255, 255, .04);
-      border-color: rgba(255, 255, 255, .22);
-    }
-
-    .postMetaRow {
-      display: flex;
-      gap: 10px;
+    .socialRow a {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: #fff;
+      display: inline-flex;
       align-items: center;
-      flex-wrap: wrap;
-      margin-bottom: 8px;
-    }
-
-    .postDate {
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      color: rgba(231, 233, 238, .78);
-    }
-
-    .tag {
-      border: 1px solid var(--line);
-      background: var(--chip);
+      justify-content: center;
+      box-shadow: var(--soft-shadow);
+      font-family: var(--px);
+      font-size: 11px;
       color: var(--muted);
-      font-size: 12px;
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-family: var(--mono);
-      height: fit-content;
-      white-space: nowrap;
+      transition: transform .2s ease, color .2s ease;
     }
 
-    .postTitle {
-      margin: 0 0 6px;
-      font-size: 15px;
-      letter-spacing: -.2px;
+    .socialRow a:hover {
+      transform: translateY(-2px);
+      color: var(--peach-deep);
     }
 
-    .postExcerpt {
-      margin: 0;
+    footer {
+      padding: 36px 0 44px;
       color: var(--muted);
       font-size: 13px;
-      line-height: 1.7;
-      max-width: 72ch;
-    }
-
-    .postFooter {
-      margin-top: 10px;
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      align-items: center;
       justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .linkMuted {
-      color: var(--muted);
-      font-size: 13px;
+    /* MailerLite 浅色适配 */
+    #mlb2-35246848.ml-form-embedContainer {
+      width: 100% !important;
+      margin: 16px 0 0 0 !important;
     }
 
-    .linkMuted:hover {
-      color: var(--text);
+    #mlb2-35246848 .ml-form-embedWrapper {
+      width: 100% !important;
+      max-width: 100% !important;
+      background: #fff !important;
+      border: 1px solid var(--mist) !important;
+      border-radius: 16px !important;
+      padding: 16px !important;
+      box-shadow: var(--soft-shadow);
     }
 
+    #mlb2-35246848 input.form-control {
+      width: 100% !important;
+      background: #fff !important;
+      color: var(--ink) !important;
+      border: 1px solid var(--mist) !important;
+      border-radius: 12px !important;
+      padding: 14px 16px !important;
+      font-size: 15px !important;
+    }
 
-    /* responsive */
-    @media (max-width: 920px) {
-      .heroGrid {
+    #mlb2-35246848 .ml-form-embedSubmit button.primary {
+      width: 100% !important;
+      padding: 14px 20px !important;
+      font-size: 15px !important;
+      font-weight: 700 !important;
+      border-radius: 999px !important;
+      background: var(--peach) !important;
+      color: #fff !important;
+      border: none !important;
+      margin-top: 12px !important;
+      box-shadow: 0 8px 20px rgba(255, 77, 0, .3);
+      cursor: pointer !important;
+    }
+
+    #mlb2-35246848 .ml-form-embedSubmit button.primary:hover {
+      background: var(--peach-deep) !important;
+    }
+
+    /* 感谢订阅弹窗 */
+    .subscribe-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .subscribe-modal-content {
+      background: #fff;
+      padding: 40px 50px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      max-width: 420px;
+      width: 90%;
+    }
+
+    .subscribe-modal-content h2 {
+      font-size: 28px;
+      margin: 0 0 12px;
+      color: var(--ink);
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 1000px) {
+      .teGrid {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 30px;
+      }
+    }
+
+    @media (max-width: 900px) {
+
+      .heroGrid,
+      .notesRow {
         grid-template-columns: 1fr;
       }
 
-      .grid3 {
+      .hero {
+        padding-top: 28px;
+      }
+
+      .videoBand {
+        padding: 24px;
+        border-radius: 24px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .teGrid {
         grid-template-columns: 1fr;
       }
 
-      .about {
-        grid-template-columns: 1fr;
+      .teHeader {
+        padding: 26px 0;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .lever,
+      .handL,
+      .handR {
+        transition: none;
       }
 
-      .navlinks {
-        display: none;
+      .sweep {
+        animation: none;
       }
 
-      .tCardInner {
-        grid-template-columns: 1fr;
+      .teCol:hover .shake {
+        animation: none;
       }
 
-      .timeline {
-        padding-left: 22px;
-      }
-
-      .timeline:before {
-        left: 8px;
-      }
-
-      .tItem:before {
-        left: -22px;
+      .btn,
+      .noteCard,
+      .socialRow a {
+        transition: none;
       }
     }
   </style>
@@ -801,50 +570,89 @@
 
 <body>
 
-  <!-- Topbar -->
-  <div class="topbar">
+  <!-- 顶栏 -->
+  <div class="teHeader">
     <div class="wrap">
-      <div class="nav">
-        <div class="brand">
-          <div class="logo" aria-hidden="true">
-            <img src="/assets/images/logo.jpg" alt="GEORIGIN logo">
-          </div>
+      <div class="teGrid">
+        <div class="teBrand">GEORIGIN</div>
 
-          GEORIGIN <span class="small">useful • creative • simple</span>
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <!-- 拨杆开关：底座 + 枢轴 + 杆 + 旋钮，hover 左拨，离开回弹 -->
+            <svg viewBox="0 0 40 40">
+              <rect x="11" y="28" width="18" height="6" rx="2" />
+              <circle cx="20" cy="30" r="1.2" />
+              <g class="lever">
+                <line x1="20" y1="30" x2="20" y2="13" />
+                <circle cx="20" cy="10" r="3.4" />
+              </g>
+            </svg>
+          </div>
+          <h5><a href="#how">product</a></h5>
         </div>
 
-        <nav class="navlinks" aria-label="Primary">
-          <a href="blog.html">Blog</a>
-          <a href="#insights">Insights</a>
-          <a href="#timeline">Timeline</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-        </nav>
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <!-- 毫米波雷达：同心圆一圈一圈 + hover 时扫描线旋转 -->
+            <svg viewBox="0 0 40 40">
+              <circle cx="20" cy="20" r="5" />
+              <circle cx="20" cy="20" r="10" />
+              <circle cx="20" cy="20" r="15" />
+              <circle cx="20" cy="20" r="1.2" />
+              <g class="sweep">
+                <line x1="20" y1="20" x2="20" y2="5" />
+              </g>
+            </svg>
+          </div>
+          <h5><a href="#notes">blog</a></h5>
+        </div>
 
+        <div class="teCol">
+          <div class="icon" aria-hidden="true">
+            <!-- 握手：左右两只手，hover 合拢相扣并轻晃，离开松开 -->
+            <svg viewBox="0 0 40 40">
+              <g class="shake">
+                <g class="handL">
+                  <line x1="2" y1="20" x2="10" y2="20" />
+                  <rect x="10" y="16" width="12" height="8" rx="3.5" />
+                  <line x1="14" y1="16" x2="14" y2="13" />
+                  <line x1="17" y1="16" x2="17" y2="24" />
+                  <line x1="20" y1="16" x2="20" y2="24" />
+                </g>
+                <g class="handR">
+                  <line x1="38" y1="24" x2="30" y2="24" />
+                  <rect x="18" y="20" width="12" height="8" rx="3.5" />
+                  <line x1="26" y1="28" x2="26" y2="31" />
+                  <line x1="23" y1="20" x2="23" y2="28" />
+                  <line x1="20" y1="20" x2="20" y2="28" />
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h5><a href="#contact">contact</a></h5>
+        </div>
 
       </div>
     </div>
   </div>
 
-  <!-- Hero -->
+  <!-- HERO -->
   <header class="hero">
     <div class="wrap">
-      <h1 class="heroTitle">
-        Easing-Point — A contactless, privacy-first fatigue awareness device
-      </h1>
-
       <div class="heroGrid">
-        <!-- BIG Newsletter -->
-        <div id="subscribe" class="subscribeHero">
-          <div class="subscribeHeroTitle">Get Updates</div>
-          <div class="subscribeHeroSub">Follow the project and take part in the Kickstarter early-bird phase.</div>
+        <div>
+          <span class="pxlabel">EASING-POINT · IN DEVELOPMENT</span>
+          <h1>Why not take a break <em>when you feel tired?</em></h1>
+          <p class="lead">
+            Easing-Point is a strange device made of millimeter-wave radar.
+            It can sense your sedentary work time and synchronize your fatigue level with a pixelated pet.
+          </p>
 
-          <!-- MailerLite Embed (ONLY ONE on the page) -->
+          <!-- MailerLite 订阅表单 -->
           <div id="mlb2-35246848" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-35246848">
             <div class="ml-form-align-center">
               <div class="ml-form-embedWrapper embedForm">
                 <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
-
                   <form class="ml-block-form"
                     action="https://assets.mailerlite.com/jsonp/2012891/forms/175487235024487650/subscribe"
                     method="post" target="_blank">
@@ -856,426 +664,245 @@
                         </div>
                       </div>
                     </div>
-
                     <input type="hidden" name="ml-submit" value="1">
                     <div class="ml-form-embedSubmit">
                       <button type="submit" class="primary">Subscribe</button>
                     </div>
                     <input type="hidden" name="anticsrf" value="true">
                   </form>
-
-                </div>
-
-                <div class="ml-form-successBody row-success" style="display:none">
-                  <div class="ml-form-successContent">
-                    <h4>Thank you!</h4>
-                    <p>You're on the list.</p>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- /MailerLite Embed -->
 
+          <div class="subNote">
+            <span class="pxheart" aria-hidden="true"></span>
+            Subscribe to get
+            <span
+              style="background:#fff; padding:3px 9px; border-radius:6px; font-weight:600; color:var(--peach-deep); white-space:nowrap;">
+              early-bird Kickstarter pricing. 
+            </span>
+            
+          </div>
         </div>
-        <!-- /BIG Newsletter -->
 
+        <div class="device" style="background:none; box-shadow:none; padding:0;">
+          <img src="assets/images/12.png" alt="Easing-Point" style="width:100%; height:auto; display:block;">
+        </div>
       </div>
     </div>
   </header>
 
-
-  <!-- Insights (Blog + Video) -->
-  <section class="block" id="insights">
+  <!-- 视频 -->
+  <section class="block" id="how" style="padding-top:0;">
     <div class="wrap">
-      <div class="kicker">Insights</div>
-
-      <div class="insightsGrid">
-        <!-- Featured video -->
-        <div class="videoCard" aria-label="Featured video">
-          <div class="videoTop">
-            <div class="pill"><span class="dot"></span> Latest video</div>
-            <a class="btn" href="blog.html" aria-label="View blog">Blog →</a>
-          </div>
-
-          <h3 class="videoTitle" style="padding:10px 16px 0 16px;" id="homeVideoTitle">Build log video</h3>
-          <p class="videoDesc" id="homeVideoDesc">
-            A short walk-through of a prototype milestone. (Edit the video ID in <span class="mono">index.html</span>.)
-          </p>
-
-          <div class="videoFrame" id="homeVideoFrame">
-            <!-- iframe injected by script -->
-          </div>
-
-          <div style="padding:0 16px 16px 16px; display:flex; gap:10px; flex-wrap:wrap;">
-            <a class="btn" id="homeVideoPostLink" href="blog.html">Read the related post</a>
-            <a class="btn" id="homeYouTubeLink" href="#" target="_blank" rel="noopener noreferrer"
-              style="display:none;">Open on YouTube</a>
-          </div>
+      <div class="videoBand">
+        <div class="videoBandHead">
+          <h2>This is the latest development progress video, and it's still being optimized.</h2>
         </div>
-
-        <!-- Latest posts -->
-        <div class="postList" aria-label="Latest posts">
-          <div class="postListHead">
-            <h3>Latest posts</h3>
-            <a class="linkMuted" href="blog.html">View all →</a>
-          </div>
-
-          <div class="postCards" id="homePostCards">
-            <!-- cards injected by script -->
-          </div>
+        <div class="videoEmbed">
+          <iframe src="https://www.youtube.com/embed/YphRUPxmjWo" title="Easing-Point build video" loading="lazy"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Timeline -->
-  <section class="block" id="timeline">
-    <div class="wrap">
-      <div class="kicker">Timeline</div>
-
-      <div class="timeline">
-        <div class="tItem">
-          <div class="tCard">
-            <div class="tCardInner">
-              <div class="tMeta">
-                <div class="tDate">2025.09</div>
-                <h3 class="tTitle">Easing-Point idea was born</h3>
-                <p class="tText">The initial concept for a contactless, desk-ready wellness device took shape.</p>
-              </div>
-              <div class="tMedia">
-                <img class="tImg" src="/assets/images/2.jpg" alt="Early prototype">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tItem">
-          <div class="tCard">
-            <div class="tCardInner">
-              <div class="tMeta">
-                <div class="tDate">2025.10</div>
-                <h3 class="tTitle">BioZero prototype completed</h3>
-                <p class="tText">The first working prototype, <strong>BioZero</strong>, was assembled to validate
-                  sensing and UX.</p>
-              </div>
-              <div class="tMedia">
-                <img class="tImg" src="/assets/images/1.jpg" alt="BioZero prototype">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tItem">
-          <div class="tCard">
-            <div class="tCardInner">
-              <div class="tMeta">
-                <div class="tDate">2025.11</div>
-                <h3 class="tTitle">First prototype shipped to Slovenia for testing</h3>
-                <p class="tText">We mailed the first BioZero unit to a community tester in Slovenia for real-world
-                  feedback.</p>
-              </div>
-              <div class="tMedia">
-                <img class="tImg" src="/assets/images/4.jpg" alt="BioZero shipped for testing">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="tItem">
-          <div class="tCard">
-            <div class="tCardInner">
-              <div class="tMeta">
-                <div class="tDate">2025.12</div>
-                <h3 class="tTitle">Easing-Point redesign: form, algorithms, and structure</h3>
-                <p class="tText">We restarted industrial design and refined algorithms and internal structure to reach a
-                  cleaner, simpler product.</p>
-              </div>
-              <div class="tMedia">
-                <img class="tImg" src="/assets/images/7.png" alt="Easing-Point redesign">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- About + Contact -->
-  <section class="block" id="about">
-    <div class="wrap">
-      <div class="kicker">About</div>
-
-      <div class="about" style="margin-top:12px;">
-        <div class="mini">
-          <h3>GEORIGIN</h3>
-          <p>
-            We are a small team with a strong bias for engineering clarity.
-            We believe the best products earn trust through daily usefulness—not through loud marketing.
-          </p>
-        </div>
-
-        <div class="mini" id="contact">
-          <h3>Contact</h3>
-          <p>
-            For partnerships, press, or early access:
-            <br /><br />
-
-            <span class="mono">Links:</span>
-            <span class="socials" aria-label="Social links"
-              style="display:inline-flex; vertical-align:middle; margin-left:40px;">
-              <a href="https://discord.gg/s8bqAQeaXa" target="_blank" aria-label="Discord" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M20.3 4.5A19.8 19.8 0 0 0 16 3a14.8 14.8 0 0 0-.7 1.5 18.4 18.4 0 0 0-5.6 0A14.8 14.8 0 0 0 9 3a19.8 19.8 0 0 0-4.3 1.5C1.9 8.6 1.3 12.6 1.6 16.6a19.8 19.8 0 0 0 5.9 3 14.6 14.6 0 0 0 1.3-2.1 12.3 12.3 0 0 1-2-.9l.5-.4a14 14 0 0 0 12.2 0l.5.4a12.3 12.3 0 0 1-2 .9 14.6 14.6 0 0 0 1.3 2.1 19.8 19.8 0 0 0 5.9-3c.4-4-.2-8-3-12.1zM8.7 14.4c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z" />
-                </svg>
-              </a>
-
-              <a href="https://x.com/GeOrigin0101" target="_blank" aria-label="X" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M18.3 2H21l-6.5 7.4L22 22h-6.2l-4.9-6.4L5.3 22H2.6l7-8-7-12h6.3l4.4 5.8L18.3 2z" />
-                </svg>
-              </a>
-
-              <a href="https://www.instagram.com/georigin0101/" target="_blank" aria-label="Instagram"
-                rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path
-                    d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm6.5-.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z" />
-                </svg>
-              </a>
-
-              <a href="https://www.facebook.com/profile.php?id=61585953214937" target="_blank" aria-label="Facebook"
-                rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M13.5 9H16V6h-2.5c-2.2 0-4 1.8-4 4v2H7v3h2.5v7H13v-7h2.7l.3-3H13v-2c0-.6.4-1 1-1z" />
-                </svg>
-              </a>
-            </span>
-
-            <br /><br />
-            <span class="mono">Updates:</span> <a href="#subscribe">Join the newsletter</a>
-          </p>
-        </div>
-
       </div>
     </div>
   </section>
 
-  <footer>
+  <!-- Build Notes -->
+  <section class="block" id="notes">
     <div class="wrap">
-      <div class="foot">
-        <div>© <span id="y"></span> GEORIGIN. All rights reserved.</div>
-        <!-- /Social icons -->
+      <div class="blockHead">
+        <span class="pxlabel">FROM THE WORKBENCH</span>
+        <h2>Built in the open.</h2>
+        <p>We post honest notes from the build — the wins, the dead ends, and the redesigns.</p>
       </div>
+      <div class="notesRow" id="build-notes"></div>
     </div>
+  </section>
+
+  <!-- 结尾 -->
+  <section class="block" id="contact" style="padding-top:8px;">
+    <div class="wrap">
+      <div class="ending">
+
+        <h2>Be there when it launches.</h2>
+        <p style="color:var(--muted); margin:0; font-size:15.5px;">
+          Early subscribers get the Kickstarter
+          <span style="background:#fff; padding:2px 8px; border-radius:6px; font-weight:600; color:var(--peach-deep);">
+            early-bird price
+          </span>
+          and every build note first.
+        </p>
+
+        <!-- 底部订阅栏（带输入框） -->
+        <div class="subscribe" style="margin: 24px auto 0;">
+          <input type="email" id="footer-email" placeholder="Email address" aria-label="Email address"
+            style="flex: 1; border: none; outline: none; background: transparent; font-family: var(--round); font-size: 15px; color: var(--ink); padding: 0 16px; min-width: 0; appearance: none;">
+          <button class="btn" onclick="submitFooterSubscribe()" type="button">Subscribe</button>
+        </div>
+
+        <div class="socialRow">
+          <a href="https://discord.gg/s8bqAQeaXa" target="_blank" rel="noopener">DC</a>
+          <a href="https://x.com/GeOrigin0101" target="_blank" rel="noopener">X</a>
+          <a href="https://www.instagram.com/georigin0101/" target="_blank" rel="noopener">IG</a>
+          <a href="https://www.youtube.com/@GeOriginAi" target="_blank" rel="noopener">YT</a>
+        </div>
+      </div>
+
+      <footer>
+        <div>© 2026 GEORIGIN — useful · creative · simple</div>
+        <div class="pxlabel" style="color:var(--muted);">BUILD NOTES OPEN</div>
+      </footer>
     </div>
-  </footer>
+  </section>
+
+  <!-- 撒花 Canvas -->
+  <canvas id="confetti-canvas"
+    style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9998;"></canvas>
+
+  <!-- 感谢订阅弹窗 -->
+  <div id="subscribe-modal" class="subscribe-modal">
+    <div class="subscribe-modal-content">
+      <h2>感谢订阅！</h2>
+      <p>我们会第一时间把最新进展发给你～</p>
+      <button class="btn" onclick="closeSubscribeModal()">好的</button>
+    </div>
+  </div>
 
   <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-
-    // ===== Home page: Featured Blog + Video =====
-    // Edit these to control what appears in the Insights block.
-    const HOME_FEATURED = {
-      video: {
-        youtubeId: "qkziTyCtYeY", // TODO: replace with your real YouTube video ID
-        title: "Where This Project Started: An Apple Watch Band Rash",
-        desc: "Origin story + why we started building a contactless, privacy-first fatigue awareness device.",
-        postHref: "posts.html?p=2026-01-02.md"
-      },
-
-      // Optional: shown only if fetching/parsing blog.html fails
-      fallbackPosts: [
-        {
-          date: "2026.01.02",
-          tag: "Build log",
-          title: "Where This Project Started: An Apple Watch Band Rash",
-          excerpt: "A small skin problem turned into a hardware project—privacy-first, desk-ready, and open to the community.",
-          href: "posts.html?p=2026-01-02.md"
-        }
-      ]
-    };
-
-    (function renderHomeInsights() {
-      const v = HOME_FEATURED.video || {};
-      const frame = document.getElementById("homeVideoFrame");
-      const vTitle = document.getElementById("homeVideoTitle");
-      const vDesc = document.getElementById("homeVideoDesc");
-      const vPost = document.getElementById("homeVideoPostLink");
-      const vYT = document.getElementById("homeYouTubeLink");
-
-      if (vTitle && v.title) vTitle.textContent = v.title;
-      if (vDesc && v.desc) vDesc.textContent = v.desc;
-      if (vPost && v.postHref) vPost.href = v.postHref;
-
-      if (frame && v.youtubeId && v.youtubeId !== "REPLACE_ME") {
-        const src = `https://www.youtube.com/embed/${v.youtubeId}`;
-        frame.innerHTML = `
-          <iframe
-            src="${src}"
-            title="${(v.title || "GEORIGIN video").replace(/"/g, '&quot;')}"
-            loading="lazy"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-        `;
-        if (vYT) {
-          vYT.style.display = "inline-flex";
-          vYT.href = `https://www.youtube.com/watch?v=${v.youtubeId}`;
-        }
-      } else if (frame) {
-        frame.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:rgba(231,233,238,.6);font-family:var(--mono);font-size:12px;">
-          Add a YouTube video ID in HOME_FEATURED.video.youtubeId
-        </div>`;
-      }
-
-      const cards = document.getElementById("homePostCards");
-      if (!cards) return;
-
-      // --- Auto-load latest posts from blog.html (based on your current blog.html structure) ---
-      const formatDateFromFile = (file) => {
-        const m = String(file || "").match(/(\d{4})-(\d{2})-(\d{2})/);
-        return m ? `${m[1]}.${m[2]}.${m[3]}` : "";
-      };
-
-      const stripMd = (s) => String(s || "")
-        .replace(/```[\s\S]*?```/g, " ")
-        .replace(/`[^`]*`/g, " ")
-        .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
-        .replace(/\[[^\]]*\]\([^)]*\)/g, "$1")
-        .replace(/^#+\s+/gm, "")
-        .replace(/[*_>#-]/g, " ")
-        .replace(/\s+/g, " ")
-        .trim();
-
-      const pickExcerptFromMarkdown = (md) => {
-        if (!md) return "";
-        let text = String(md);
-
-        // remove YAML front-matter if present
-        const fm = text.match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
-        if (fm) text = text.slice(fm[0].length);
-
-        // first non-empty paragraph-ish line
-        const lines = text.split(/\r?\n/).map(l => l.trim());
-        const first = lines.find(l => l && !l.startsWith("#") && !l.startsWith(">")) || "";
-        const clean = stripMd(first);
-        return clean.length > 140 ? clean.slice(0, 140).trim() + "…" : clean;
-      };
-
-      const parseFrontMatter = (md) => {
-        const out = {};
-        const m = String(md || "").match(/^---\s*\n([\s\S]*?)\n---\s*\n/);
-        if (!m) return out;
-        const block = m[1];
-        block.split(/\r?\n/).forEach(line => {
-          const mm = line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.*)\s*$/);
-          if (!mm) return;
-          const k = mm[1];
-          let v = mm[2] || "";
-          v = v.replace(/^["']|["']$/g, "");
-          out[k] = v;
-        });
-        return out;
-      };
-
-      async function getLatestPostsFromBlog(max = 3) {
-        const res = await fetch("blog.html", { cache: "no-store" });
-        if (!res.ok) throw new Error("blog.html fetch failed");
-        const html = await res.text();
-
-        const doc = new DOMParser().parseFromString(html, "text/html");
-        const anchors = Array.from(doc.querySelectorAll('a[href^="posts.html?p="]'));
-
-        const items = anchors
-          .map(a => {
-            const href = a.getAttribute("href") || "";
-            const title = (a.textContent || "").trim().replace(/\s+/g, " ");
-            const p = href.match(/\bp=([^&#]+)/);
-            const file = p ? decodeURIComponent(p[1]) : "";
-            return { href, title, file };
-          })
-          .filter(x => x.href && x.title)
-          .slice(0, max);
-
-        // Enrich with excerpt (optional) by fetching the markdown files.
-        const enriched = await Promise.all(items.map(async (it) => {
-          let excerpt = "";
-          let tag = "Build log";
-          let date = formatDateFromFile(it.file);
-
-          try {
-            if (it.file) {
-              const r = await fetch(`posts/${it.file}`, { cache: "no-store" });
-              if (r.ok) {
-                const md = await r.text();
-                const fm = parseFrontMatter(md);
-                // allow per-post override via front-matter
-                if (fm.date) date = fm.date;
-                if (fm.tag) tag = fm.tag;
-                if (fm.excerpt) excerpt = fm.excerpt;
-                if (!excerpt) excerpt = pickExcerptFromMarkdown(md);
-              }
-            }
-          } catch (_) { /* ignore */ }
-
-          return {
-            date,
-            tag,
-            title: it.title,
-            excerpt: excerpt || "",
-            href: it.href
-          };
-        }));
-
-        return enriched;
-      }
-
-      // Render immediately with a lightweight skeleton, then replace when loaded.
-      cards.innerHTML = `
-        <div style="color:var(--muted);font-size:13px;">Loading latest posts…</div>
-      `;
-
-      (async () => {
-        let posts = [];
-        try {
-          posts = await getLatestPostsFromBlog(3);
-        } catch (_) {
-          posts = (HOME_FEATURED.fallbackPosts || []).slice(0, 3);
-        }
-
-        cards.innerHTML = (posts || []).map(p => `
-          <a class="postCard" href="${p.href}">
-            <div class="postMetaRow">
-              <span class="postDate">${p.date || ""}</span>
-              ${p.tag ? `<span class="tag">${p.tag}</span>` : ""}
-            </div>
-            <h4 class="postTitle">${p.title || ""}</h4>
-            <p class="postExcerpt">${p.excerpt || ""}</p>
-          </a>
-        `).join("") || `<div style="color:var(--muted);font-size:13px;">No posts found.</div>`;
-      })();
-    })();
-
-
-    // MailerLite success callback (their script will call this)
+    // ==================== MailerLite 成功后触发撒花 + 弹窗 ====================
     function ml_webform_success_35246848() {
-      var form = document.querySelector('.ml-subscribe-form-35246848 .row-form');
-      var ok = document.querySelector('.ml-subscribe-form-35246848 .row-success');
-      if (form) form.style.display = 'none';
-      if (ok) ok.style.display = 'block';
+      triggerConfetti();
+      showSubscribeModal();
     }
+
+    // ==================== 撒花特效 ====================
+    function triggerConfetti() {
+      const canvas = document.getElementById('confetti-canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#ff4d00', '#d63f00', '#f4f4f2', '#1a1a1a'];
+      let particles = [];
+
+      for (let i = 0; i < 200; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * -canvas.height,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          speed: Math.random() * 4 + 3.5,
+          angle: Math.random() * Math.PI * 2,
+          rotationSpeed: (Math.random() - 0.5) * 0.15
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.y += p.speed;
+          p.angle += p.rotationSpeed;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.angle);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+
+          if (p.y > canvas.height + p.size) {
+            particles.splice(i, 1);
+          }
+        }
+
+        if (particles.length > 0) {
+          requestAnimationFrame(animate);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      animate();
+    }
+
+    function showSubscribeModal() {
+      document.getElementById('subscribe-modal').style.display = 'flex';
+      setTimeout(() => {
+        const modal = document.getElementById('subscribe-modal');
+        if (modal.style.display === 'flex') modal.style.display = 'none';
+      }, 5000);
+    }
+
+    function closeSubscribeModal() {
+      document.getElementById('subscribe-modal').style.display = 'none';
+    }
+
+    // ==================== 底部订阅：复用顶部 MailerLite 表单的提交链路 ====================
+    // 把邮箱填进顶部表单并程序化提交，MailerLite 的脚本走它自己的 AJAX，
+    // 成功后自动回调 ml_webform_success_35246848()（撒花 + 弹窗）。
+    // 只有一条提交链路，不会出现"两套代码两种行为"。
+    function submitFooterSubscribe() {
+      const input = document.getElementById('footer-email');
+      const email = (input.value || '').trim();
+
+      // 简单校验
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        input.focus();
+        return;
+      }
+
+      const topForm = document.querySelector('#mlb2-35246848 form.ml-block-form');
+      const topInput = topForm && topForm.querySelector('input[type="email"]');
+      const topBtn = topForm && topForm.querySelector('button[type="submit"]');
+
+      if (topInput && topBtn) {
+        topInput.value = email;
+        input.value = '';
+        topBtn.click();
+      }
+    }
+
+    // ==================== 加载 Build Notes ====================
+    async function loadLatestNotes() {
+      try {
+        const res = await fetch('posts.json');
+        if (!res.ok) throw new Error('posts.json not found');
+
+        let posts = await res.json();
+        posts.sort((a, b) => b.date.localeCompare(a.date));
+
+        const latestTwo = posts.slice(0, 2);
+        const container = document.getElementById('build-notes');
+        if (!container) return;
+
+        container.innerHTML = '';
+
+        latestTwo.forEach(post => {
+          const card = document.createElement('a');
+          card.className = 'noteCard';
+          card.href = `posts.html?p=${post.slug}`;
+          card.innerHTML = `
+            <span class="noteDate">${post.date}</span>
+            <h3>${post.title}</h3>
+            <p>${post.excerpt}</p>
+            <span class="noteMore">Read the note →</span>
+          `;
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    loadLatestNotes();
   </script>
 
-  <!-- MailerLite webforms script (required) -->
+  <!-- MailerLite 脚本 -->
   <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
     type="text/javascript"></script>
   <script>
-    // MailerLite tracking init (as they provide)
     fetch("https://assets.mailerlite.com/jsonp/2012891/forms/175487235024487650/takel").catch(() => { });
   </script>
 
