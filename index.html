@@ -763,9 +763,9 @@
   <!-- 感谢订阅弹窗 -->
   <div id="subscribe-modal" class="subscribe-modal">
     <div class="subscribe-modal-content">
-      <h2>感谢订阅！</h2>
-      <p>我们会第一时间把最新进展发给你～</p>
-      <button class="btn" onclick="closeSubscribeModal()">好的</button>
+      <h2>Thank you for subscribing!</h2>
+      <p>You'll receive project updates and early-bird Kickstarter notifications.</p>
+      <button class="btn" onclick="closeSubscribeModal()">OK</button>
     </div>
   </div>
 
@@ -829,10 +829,10 @@
 
     function showSubscribeModal() {
       document.getElementById('subscribe-modal').style.display = 'flex';
-      setTimeout(() => {
-        const modal = document.getElementById('subscribe-modal');
-        if (modal.style.display === 'flex') modal.style.display = 'none';
-      }, 5000);
+      // setTimeout(() => {
+      //   const modal = document.getElementById('subscribe-modal');
+      //   if (modal.style.display === 'flex') modal.style.display = 'none';
+      // }, 5000);
     }
 
     function closeSubscribeModal() {
