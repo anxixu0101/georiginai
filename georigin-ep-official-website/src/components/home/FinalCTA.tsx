@@ -1,0 +1,45 @@
+import Reveal from '@/components/Reveal'
+import SubscribeForm from '@/components/SubscribeForm'
+
+export default function FinalCTA() {
+  return (
+    <section
+      id="contact"
+      className="relative overflow-hidden px-6 py-[130px]"
+      style={{ background: 'linear-gradient(180deg, #f2f2f0 0%, #ececea 60%, #e9e9e7 100%)' }}
+    >
+      <span
+        className="ep-watermark pointer-events-none absolute -right-8 top-1/2 hidden -translate-y-1/2 select-none md:block"
+        aria-hidden="true"
+      >
+        JOIN
+      </span>
+
+      <Reveal className="relative z-10 mx-auto max-w-[640px] text-center" stagger={0.08}>
+        <p data-reveal-item className="ep-eyebrow justify-center">
+          KICKSTARTER · EARLY BIRD
+        </p>
+        <h2
+          data-reveal-item
+          className="mt-6 font-archivo text-[clamp(36px,4vw,60px)] font-black leading-[1.0] tracking-[-0.02em] text-ep-ink"
+        >
+          Be there when it
+          <br />
+          <span className="hl">launches.</span>
+        </h2>
+        <p
+          data-reveal-item
+          className="mx-auto mt-6 max-w-[52ch] font-grotesk text-[16.5px] leading-[1.75] text-ep-body"
+        >
+          Early subscribers get the Kickstarter early-bird price and every build note first.
+        </p>
+        <div data-reveal-item className="mx-auto mt-10 max-w-[480px] text-left">
+          <SubscribeForm idPrefix="cta" />
+          <p className="mt-4 text-center font-mono text-[12px] tracking-[0.06em] text-ep-muted">
+            No spam. Just build notes and launch day.
+          </p>
+        </div>
+      </Reveal>
+    </section>
+  )
+}

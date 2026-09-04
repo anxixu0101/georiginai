@@ -1,0 +1,59 @@
+# Build the new static site (georigin-ep-official-website) and deploy it to
+# GitHub Pages on every push to master. The Pages source must be set to
+# "GitHub Actions" in the repo settings for this to take effect.
+name: Deploy website to GitHub Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  pages: write
+  id-token: write
+
+# One deployment at a time; a newer push cancels an in-progress deploy.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: georigin-ep-official-website/package-lock.json
+
+      - name: Install dependencies
+        working-directory: georigin-ep-official-website
+        run: npm ci
+
+      - name: Build static site (frontend only)
+        working-directory: georigin-ep-official-website
+        run: npx vite build
+
+      # GitHub Pages has no history-API fallback; serving index.html as
+      # 404.html keeps deep links like /devlog/2026-07-03 working.
+      - name: Add SPA fallback
+        run: cp georigin-ep-official-website/dist/public/index.html georigin-ep-official-website/dist/public/404.html
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: georigin-ep-official-website/dist/public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

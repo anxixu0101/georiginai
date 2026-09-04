@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-VtGymhXEd_t_UzvUQD2xo.js"></script>
+    <script>
+      window.plausible = window.plausible || function () { (plausible.q = plausible.q || []).push(arguments) }, plausible.init = plausible.init || function (i) { plausible.o = i || {} };
+      plausible.init()
+    </script>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="description" content="Easing-Point (EP) by GEORIGIN — a pocket-sized pixel-art handheld console. One big knob, one little screen, and a growing library of strange, beautiful games." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800;900&family=Space+Grotesk:wght@400;500;700&family=Space+Mono:wght@400;700&family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <title>GEORIGIN — Easing-Point Official</title>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <!--
+      MailerLite subscription (same account/form as the old static site).
+      The embed form below stays hidden: SubscribeForm.tsx submits through it
+      via src/lib/mailerlite.ts, so MailerLite's own webforms script handles
+      the AJAX post exactly as it did on the old site. On success the script
+      calls the global ml_webform_success_35246848(), which we bridge to a
+      DOM event for React.
+    -->
+    <div style="display:none" aria-hidden="true">
+      <div id="mlb2-35246848" class="ml-form-embedContainer ml-subscribe-form ml-subscribe-form-35246848">
+        <div class="ml-form-align-center">
+          <div class="ml-form-embedWrapper embedForm">
+            <div class="ml-form-embedBody ml-form-embedBodyDefault row-form">
+              <form class="ml-block-form"
+                action="https://assets.mailerlite.com/jsonp/2012891/forms/175487235024487650/subscribe"
+                method="post" target="_blank">
+                <div class="ml-form-formContent">
+                  <div class="ml-form-fieldRow ml-last-item">
+                    <div class="ml-field-group ml-field-email ml-validate-email ml-validate-required">
+                      <input aria-label="email" aria-required="true" type="email" class="form-control"
+                        name="fields[email]" placeholder="Email address" autocomplete="email" required>
+                    </div>
+                  </div>
+                </div>
+                <input type="hidden" name="ml-submit" value="1">
+                <div class="ml-form-embedSubmit">
+                  <button type="submit" class="primary">Subscribe</button>
+                </div>
+                <input type="hidden" name="anticsrf" value="true">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function ml_webform_success_35246848() {
+        window.dispatchEvent(new CustomEvent('ml:subscribed'));
+      }
+    </script>
+    <script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024"
+      type="text/javascript"></script>
+    <script>
+      fetch("https://assets.mailerlite.com/jsonp/2012891/forms/175487235024487650/takel").catch(() => { });
+    </script>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
