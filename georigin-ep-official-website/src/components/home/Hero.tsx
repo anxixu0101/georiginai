@@ -88,7 +88,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Right column — stage */}
-        <div className="relative">
+        <div className="relative lg:w-[134%] lg:translate-x-10 lg:translate-y-10">
           <Parallax drift={56}>
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
@@ -104,14 +104,14 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: 'spring', stiffness: 240, damping: 16, delay: 0.5 }}
-            className="absolute -right-2 -top-6 w-[128px] rotate-3 md:w-[168px]"
+            className="absolute -right-2 -top-6 w-[128px] rotate-3 md:w-[168px] lg:-right-[92px] lg:-top-36 lg:w-[255px]"
           >
             <CounterFloat delay={0}>
-              <div className="rounded-[14px] bg-white p-2 shadow-[0_18px_36px_rgba(0,0,0,0.16)]">
+              <div className="rounded-[18px] bg-white p-3 shadow-[0_22px_46px_rgba(0,0,0,0.18)]">
                 <div className="ep-frame rounded-[8px]">
                   <img src="/assets/game-gothic.jpg" alt="ECLIPSE RACER gameplay" />
                 </div>
-                <p className="px-1 pb-1 pt-2 font-mono text-[9px] tracking-[0.12em] text-ep-muted">
+                <p className="px-1 pb-1 pt-3 font-mono text-[9px] tracking-[0.12em] text-ep-muted lg:text-[11px]">
                   ECLIPSE RACER / IN DEV · 04
                 </p>
               </div>
@@ -123,14 +123,14 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: 'spring', stiffness: 240, damping: 16, delay: 0.65 }}
-            className="absolute -left-3 bottom-10 w-[148px] -rotate-4 md:w-[196px]"
+            className="absolute -left-3 bottom-10 w-[148px] -rotate-4 md:w-[196px] lg:-bottom-[272px] lg:-left-[120px] lg:w-[300px] lg:-rotate-6"
           >
             <CounterFloat delay={1.2}>
-              <div className="rounded-[14px] bg-white p-2 shadow-[0_18px_36px_rgba(0,0,0,0.16)]">
+              <div className="rounded-[18px] bg-white p-3 shadow-[0_22px_46px_rgba(0,0,0,0.18)]">
                 <div className="ep-frame rounded-[8px]">
                   <img src="/assets/device-blue-off.jpg" alt="Mist Blue Easing-Point, screen off" />
                 </div>
-                <p className="flex items-center gap-1.5 px-1 pb-1 pt-2 font-mono text-[9px] tracking-[0.12em] text-ep-muted">
+                <p className="flex items-center gap-1.5 px-1 pb-1 pt-3 font-mono text-[9px] tracking-[0.12em] text-ep-muted lg:text-[11px]">
                   <span className="h-2 w-2 rounded-full bg-ep-cobalt ring-1 ring-ep-ink" />
                   MIST BLUE / COLOR B
                 </p>
@@ -141,7 +141,7 @@ export default function Hero() {
       </div>
 
       {/* Pill strip under the stage */}
-      <div className="relative z-10 mx-auto flex max-w-ep flex-wrap items-center justify-center gap-3 px-6 pb-10 lg:justify-end lg:px-16">
+      <div className="relative z-10 mx-auto flex max-w-ep flex-wrap items-center justify-center gap-3 px-6 pb-10 lg:mt-[260px] lg:justify-end lg:px-16">
         {['SIGNAL YELLOW / MIST BLUE', 'ONE BIG KNOB', 'PIXEL DISPLAY'].map((pill) => (
           <span key={pill} className="ep-glass-pill">
             {pill}

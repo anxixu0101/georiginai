@@ -12,6 +12,15 @@ export default defineConfig({
     inspectAttr(), react()],
   server: {
     port: 3000,
+    watch: {
+      // Windows: editor preview tooling spawns Chrome with its profile inside
+      // the project (.chrome-cdp, .chrome-preview), and fs.watch on those
+      // locked cache files crashes the server with EBUSY. Polling avoids
+      // per-file fs.watch entirely; the regex also skips those dirs.
+      usePolling: true,
+      interval: 300,
+      ignored: [/[/\\]\.chrome[^/\\]*[/\\]/],
+    },
   },
   resolve: {
     alias: {

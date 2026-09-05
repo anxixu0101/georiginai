@@ -23,3 +23,5 @@ coverage/
 .nyc_output/
 # Logs
 *.log
+# Local Chrome preview profile/cache (created by editor preview tooling)
+.chrome*/
