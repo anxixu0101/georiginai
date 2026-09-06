@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useLocation } from 'react-router'
 import Hero from '@/components/home/Hero'
 import LogoReveal from '@/components/home/LogoReveal'
-import GameGallery from '@/components/home/GameGallery'
 import Hardware from '@/components/home/Hardware'
 import DevLogTeaser from '@/components/home/DevLogTeaser'
 import FinalCTA from '@/components/home/FinalCTA'
@@ -22,7 +21,6 @@ export default function Home() {
     <>
       <Hero />
       <LogoReveal />
-      <GameGallery />
       <Hardware />
       <DevLogTeaser />
       <FinalCTA />
