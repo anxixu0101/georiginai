@@ -16,6 +16,8 @@ export interface SubscribeFormProps {
   microcopy?: string
   /** Optional id prefix for input/label pairing (two instances per page). */
   idPrefix?: string
+  /** Optional call-to-action label. */
+  buttonLabel?: string
 }
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -38,6 +40,7 @@ export default function SubscribeForm({
   onSubscribe,
   microcopy,
   idPrefix = 'subscribe',
+  buttonLabel = 'Subscribe',
 }: SubscribeFormProps) {
   const submit = onSubscribe ?? subscribeWithMailerLite
   const [email, setEmail] = useState('')
@@ -88,7 +91,7 @@ export default function SubscribeForm({
               <path d="M8 13.2l3.2 3.2L18 9.8" fill="none" stroke="#141414" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
             </motion.svg>
             <p className="font-grotesk text-[15px] font-medium text-ep-ink">
-              You&rsquo;re on the list. Early-bird pricing lands in your inbox first.
+              You&rsquo;re on the list. The next development update lands in your inbox first.
             </p>
           </div>
         </motion.div>
@@ -128,7 +131,7 @@ export default function SubscribeForm({
           }`}
         />
         <button type="submit" disabled={state === 'submitting'} className="ep-btn-primary min-w-[140px]">
-          {state === 'submitting' ? <DotLoader /> : 'Subscribe'}
+          {state === 'submitting' ? <DotLoader /> : buttonLabel}
         </button>
       </form>
       <AnimatePresence>

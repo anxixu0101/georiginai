@@ -18,13 +18,16 @@ const item = {
 /** Infinite float loop, memoized so parent re-renders never reset it. */
 const FloatingDevice = memo(function FloatingDevice() {
   return (
-    <div className="ep-float">
+    <div className="ep-float relative">
       <img
         src="/assets/device-yellow-cut.png"
         alt="Easing-Point handheld console in Signal Yellow running STAR DRIFT"
         className="w-full"
         style={{ filter: 'drop-shadow(0 54px 42px rgba(20,20,20,0.30))' }}
       />
+      <span className="pointer-events-none absolute bottom-[5%] right-[4%] border border-ep-accent bg-ep-ink px-2.5 py-1.5 font-mono text-[9px] font-bold tracking-[0.16em] text-white shadow-lg md:text-[10px]">
+        V1 PROTOTYPE
+      </span>
     </div>
   )
 })
@@ -62,27 +65,33 @@ export default function Hero() {
         {/* Left column */}
         <motion.div variants={container} initial="hidden" animate="show" className="relative z-10">
           <motion.p variants={item} className="ep-eyebrow">
-            EASING-POINT · IN DEVELOPMENT
+            EASING-POINT · V1 WORKING PROTOTYPE
           </motion.p>
           <motion.h1
             variants={item}
-            className="mt-7 font-archivo text-[clamp(52px,5.4vw,92px)] font-black leading-[0.96] tracking-[-0.03em] text-ep-ink"
+            className="mt-7 font-archivo text-[clamp(48px,4.6vw,78px)] font-black leading-[0.94] tracking-[-0.03em] text-ep-ink"
           >
-            Tiny console.
-            <br />
-            <span className="hl">Huge worlds.</span>
+            <span className="block whitespace-nowrap">A new input.</span>
+            <span className="mt-1 block">
+              <span className="hl whitespace-nowrap">Worlds made</span>
+            </span>
+            <span className="mt-1 block">
+              <span className="hl whitespace-nowrap">for it.</span>
+            </span>
           </motion.h1>
           <motion.p
             variants={item}
             className="mt-7 max-w-[46ch] font-grotesk text-[16.5px] leading-[1.75] text-ep-body"
           >
-            Easing-Point is a pocket-sized pixel-art handheld. One big knob, one little screen, and
-            a growing library of strange, beautiful games.
+            Easing-Point replaces the D-pad with a spring-loaded control, and every exclusive game
+            is built around it. This site shows V1. V2 keeps the same idea in a smaller, more
+            imaginative form—with richer ways to play.
           </motion.p>
           <motion.div variants={item} className="mt-9 max-w-[520px]">
             <SubscribeForm
               idPrefix="hero"
-              microcopy="Subscribe to get early-bird Kickstarter pricing."
+              buttonLabel="Get V2 Updates"
+              microcopy="Follow V2 development. New hardware and gameplay will be shared when ready."
             />
           </motion.div>
         </motion.div>
@@ -118,30 +127,11 @@ export default function Hero() {
             </CounterFloat>
           </motion.div>
 
-          {/* Floating mini-card: MIST BLUE (bottom-left) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ type: 'spring', stiffness: 240, damping: 16, delay: 0.65 }}
-            className="absolute -left-3 bottom-10 w-[148px] -rotate-4 md:w-[196px] lg:-bottom-[272px] lg:-left-[120px] lg:w-[300px] lg:-rotate-6"
-          >
-            <CounterFloat delay={1.2}>
-              <div className="rounded-[18px] bg-white p-3 shadow-[0_22px_46px_rgba(0,0,0,0.18)]">
-                <div className="ep-frame rounded-[8px]">
-                  <img src="/assets/device-blue-off.jpg" alt="Mist Blue Easing-Point, screen off" />
-                </div>
-                <p className="flex items-center gap-1.5 px-1 pb-1 pt-3 font-mono text-[9px] tracking-[0.12em] text-ep-muted lg:text-[11px]">
-                  <span className="h-2 w-2 rounded-full bg-ep-cobalt ring-1 ring-ep-ink" />
-                  MIST BLUE / COLOR B
-                </p>
-              </div>
-            </CounterFloat>
-          </motion.div>
         </div>
       </div>
 
       {/* Pill strip under the stage */}
-      <div className="relative z-10 mx-auto flex max-w-ep flex-wrap items-center justify-center gap-3 px-6 pb-10 lg:mt-[260px] lg:justify-end lg:px-16">
+      <div className="relative z-10 mx-auto flex max-w-ep flex-wrap items-center justify-center gap-3 px-6 pb-10 lg:mt-12 lg:justify-end lg:px-16">
         {['SIGNAL YELLOW / MIST BLUE', 'ONE BIG KNOB', 'PIXEL DISPLAY'].map((pill) => (
           <span key={pill} className="ep-glass-pill">
             {pill}

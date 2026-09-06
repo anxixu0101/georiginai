@@ -12,9 +12,9 @@ export default function Hardware() {
           data-reveal-item
           className="mt-6 font-archivo text-[clamp(36px,4vw,60px)] font-black leading-[1.0] tracking-[-0.02em] text-ep-ink"
         >
-          One big knob.
+          One knob.
           <br />
-          <span className="hl">Zero clutter.</span>
+          <span className="hl">Full control.</span>
         </h2>
       </Reveal>
 
@@ -40,11 +40,12 @@ function RowA() {
   return (
     <>
       <h3 className="font-archivo text-[clamp(22px,2vw,28px)] font-extrabold tracking-[-0.01em] text-ep-ink">
-        A knob you can play.
+        A spring-loaded control you can try right here.
       </h3>
       <p className="mt-4 max-w-[48ch] font-grotesk text-[16px] leading-[1.75] text-ep-body">
-        Take the helm in EP SPACE BATTLE. Pull the spring-loaded knob up to 60 degrees left or
-        right to steer, dodge incoming fighters, and let auto-fire clear a path through the stars.
+        Move your mouse over the blue knob, then click and drag. Pull the knob left or right to
+        steer. Release it and the control springs back to center—just like the real Easing-Point
+        prototype. Dodge incoming fighters while auto-fire clears a path through the stars.
       </p>
     </>
   )

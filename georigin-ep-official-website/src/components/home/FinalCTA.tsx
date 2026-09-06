@@ -17,26 +17,27 @@ export default function FinalCTA() {
 
       <Reveal className="relative z-10 mx-auto max-w-[640px] text-center" stagger={0.08}>
         <p data-reveal-item className="ep-eyebrow justify-center">
-          KICKSTARTER · EARLY BIRD
+          V2 DEVELOPMENT · UPDATES
         </p>
         <h2
           data-reveal-item
           className="mt-6 font-archivo text-[clamp(36px,4vw,60px)] font-black leading-[1.0] tracking-[-0.02em] text-ep-ink"
         >
-          Be there when it
+          Follow what comes
           <br />
-          <span className="hl">launches.</span>
+          <span className="hl">next.</span>
         </h2>
         <p
           data-reveal-item
           className="mx-auto mt-6 max-w-[52ch] font-grotesk text-[16.5px] leading-[1.75] text-ep-body"
         >
-          Early subscribers get the Kickstarter early-bird price and every build note first.
+          Get V2 build notes, updated hardware images, and new gameplay footage as the next version
+          takes shape.
         </p>
         <div data-reveal-item className="mx-auto mt-10 max-w-[480px] text-left">
-          <SubscribeForm idPrefix="cta" />
+          <SubscribeForm idPrefix="cta" buttonLabel="Get V2 Updates" />
           <p className="mt-4 text-center font-mono text-[12px] tracking-[0.06em] text-ep-muted">
-            No spam. Just build notes and launch day.
+            No spam. Just development notes and the eventual launch.
           </p>
         </div>
       </Reveal>

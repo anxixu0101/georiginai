@@ -144,6 +144,9 @@ function ConsoleCard({
         alt="Signal Yellow Easing-Point handheld console"
         className="w-full drop-shadow-[0_28px_30px_rgba(0,0,0,0.22)]"
       />
+      <span className="pointer-events-none absolute bottom-[5%] right-[4%] z-40 border border-ep-accent bg-ep-ink px-2 py-1 font-mono text-[8px] font-bold tracking-[0.14em] text-white shadow-md">
+        V1 PROTOTYPE
+      </span>
       {onClick && activeIndex === null && (
         <button
           type="button"

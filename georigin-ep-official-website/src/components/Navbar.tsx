@@ -166,6 +166,29 @@ export default function Navbar() {
         </div>
       </motion.header>
 
+      <AnimatePresence>
+        {isHome && !open && (
+          <motion.a
+            href="#development"
+            onClick={(event) => {
+              event.preventDefault()
+              scrollToAnchor('#development')
+              window.history.replaceState(null, '', '#development')
+            }}
+            initial={{ y: -32, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -32, opacity: 0 }}
+            transition={{ duration: 0.45, delay: 0.65, ease: [0.2, 0.7, 0.2, 1] }}
+            className="fixed left-0 right-0 top-[60px] z-[49] flex h-8 items-center justify-center border-b border-ep-ink bg-ep-accent px-4 font-mono text-[9px] font-bold tracking-[0.12em] text-ep-ink transition-colors hover:bg-white sm:text-[10px]"
+          >
+            <span className="sm:hidden">V1 PROTOTYPE · V2 IN DEVELOPMENT →</span>
+            <span className="hidden sm:inline">
+              V1 WORKING PROTOTYPE · NOT THE FINAL RETAIL HARDWARE · V2 IN DEVELOPMENT →
+            </span>
+          </motion.a>
+        )}
+      </AnimatePresence>
+
       {/* Mobile full-screen overlay */}
       <AnimatePresence>
         {open && (

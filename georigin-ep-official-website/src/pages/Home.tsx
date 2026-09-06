@@ -3,6 +3,7 @@ import { useLocation } from 'react-router'
 import Hero from '@/components/home/Hero'
 import LogoReveal from '@/components/home/LogoReveal'
 import Hardware from '@/components/home/Hardware'
+import PrototypeRoadmap from '@/components/home/PrototypeRoadmap'
 import DevLogTeaser from '@/components/home/DevLogTeaser'
 import FinalCTA from '@/components/home/FinalCTA'
 import { scrollToAnchor } from '@/lib/lenis'
@@ -22,6 +23,7 @@ export default function Home() {
       <Hero />
       <LogoReveal />
       <Hardware />
+      <PrototypeRoadmap />
       <DevLogTeaser />
       <FinalCTA />
     </>

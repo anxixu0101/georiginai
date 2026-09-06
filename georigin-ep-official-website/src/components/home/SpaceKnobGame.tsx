@@ -512,9 +512,6 @@ export default function SpaceKnobGame() {
             className="group absolute cursor-ew-resize touch-none rounded-full outline-none focus-visible:ring-4 focus-visible:ring-ep-accent/70"
             style={{ left: '68.4%', top: '8.4%', width: '22.5%', aspectRatio: '1' }}
           >
-            <span className="absolute left-[5%] top-[19%] h-3 w-[2px] -rotate-[60deg] bg-ep-ink/45" />
-            <span className="absolute left-1/2 -top-[8%] h-3 w-[2px] -translate-x-1/2 bg-ep-ink/60" />
-            <span className="absolute right-[5%] top-[19%] h-3 w-[2px] rotate-[60deg] bg-ep-ink/45" />
             <motion.span
               style={{ rotate: knobAngle, left: '19%', right: '-5%' }}
               className="absolute bottom-[7%] top-[7%] rounded-full"
