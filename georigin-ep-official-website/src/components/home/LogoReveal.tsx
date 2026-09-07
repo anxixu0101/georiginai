@@ -2,35 +2,46 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import Reveal from '@/components/Reveal'
 import Parallax from '@/components/Parallax'
-import { YOUTUBE_VIDEO_URL } from '@/lib/site'
 import { useMediaQuery } from '@/hooks/use-media-query'
 
 const SHOWCASE_GAMES = [
-  { title: 'STARWARD', image: '/assets/game-starward.jpg', tagline: 'SHOOT FURTHER' },
-  { title: 'SANDSPIRE', image: '/assets/game-sandspire.jpg', tagline: 'BREAK THE CURSE' },
-  { title: 'ASHROAD', image: '/assets/game-ashroad.jpg', tagline: 'DRIVE WHAT REMAINS' },
   {
-    title: 'THE LAST LETTER',
-    image: '/assets/game-last-letter.jpg',
-    tagline: 'SOME STORIES STILL TRAVEL',
+    title: 'THE LAST TRAIN',
+    image: '/assets/game-last-train-cover.png',
+    tagline: 'RIDE TO THE END',
+    videoUrl: 'https://youtu.be/gRQOFHDVJPQ',
+  },
+  {
+    title: 'DESERT ROAD',
+    image: '/assets/game-desert-road-cover.png',
+    tagline: 'DRIVE BEYOND RUIN',
+    videoUrl: 'https://youtu.be/hMn6FEUf16A',
+  },
+  {
+    title: 'SPACE WAR',
+    image: '/assets/game-space-war-cover.png',
+    tagline: 'DEFEND THE ORBIT',
+    videoUrl: 'https://youtu.be/TUqNwV7Xr88',
   },
 ] as const
 
 const FAN = [
-  { fx: -0.37, y: 118, rotate: -9 },
-  { fx: -0.125, y: 68, rotate: -3 },
-  { fx: 0.125, y: 68, rotate: 3 },
-  { fx: 0.37, y: 118, rotate: 9 },
+  { fx: -0.29, y: 112, rotate: -8 },
+  { fx: 0, y: 58, rotate: 0 },
+  { fx: 0.29, y: 112, rotate: 8 },
 ] as const
 
 const SPRING = { type: 'spring' as const, duration: 0.72, bounce: 0.16 }
-const DESKTOP_WINDOW_HALF_WIDTH = 160
+const DESKTOP_WINDOW_HALF_WIDTH = 140
 
 function youtubeEmbedUrl(url: string) {
-  const id = new URL(url).searchParams.get('v')
+  const parsedUrl = new URL(url)
+  const id =
+    parsedUrl.hostname === 'youtu.be'
+      ? parsedUrl.pathname.slice(1)
+      : parsedUrl.searchParams.get('v') ?? parsedUrl.pathname.split('/').filter(Boolean).at(-1)
   return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`
 }
-
 function CornerBrackets() {
   const corner = 'absolute h-4 w-4 border-ep-accent'
   return (
@@ -80,7 +91,7 @@ function GameWindow({
   const game = SHOWCASE_GAMES[index]
   return (
     <div
-      className={`w-full overflow-hidden border-2 bg-white transition-[border-color,box-shadow,filter,opacity] duration-300 md:w-[320px] ${
+      className={`w-full overflow-hidden border-2 bg-white transition-[border-color,box-shadow,filter,opacity] duration-300 md:w-[280px] ${
         hovered
           ? 'border-ep-accent shadow-[0_0_0_1px_rgba(255,210,31,0.35),0_0_26px_rgba(255,210,31,0.28),0_24px_48px_rgba(0,0,0,0.18)]'
           : 'border-ep-ink shadow-[0_20px_40px_rgba(0,0,0,0.17)]'
@@ -93,7 +104,7 @@ function GameWindow({
         <WindowControls />
       </div>
       <div className="relative m-2 border border-ep-ink bg-ep-ink">
-        <div className="aspect-[4/3] overflow-hidden">
+        <div className="aspect-[2/3] overflow-hidden">
           <img
             src={game.image}
             alt={`${game.title} game screenshot`}
@@ -168,7 +179,7 @@ function ConsoleCard({
             style={{ left: '8.2%', top: '13.5%', width: '57.2%', height: '73%' }}
           >
             <iframe
-              src={youtubeEmbedUrl(YOUTUBE_VIDEO_URL)}
+              src={youtubeEmbedUrl(activeGame.videoUrl)}
               title={`${activeGame.title} gameplay video`}
               className="absolute inset-0 h-full w-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -275,7 +286,7 @@ export default function LogoReveal() {
           data-reveal-item
           className="mx-auto mt-6 max-w-[52ch] font-grotesk text-[16px] leading-[1.75] text-ep-body"
         >
-          Four strange worlds, all living inside one tiny console. Move closer and let them out.
+          Three strange worlds, all living inside one tiny console. Move closer and let them out.
         </p>
       </Reveal>
 
@@ -288,7 +299,7 @@ export default function LogoReveal() {
                 ref={stageRef}
                 onPointerEnter={enterStage}
                 onPointerLeave={leaveStage}
-                className="relative mx-auto h-[700px] w-[min(1240px,94vw)]"
+                className="relative mx-auto h-[850px] w-[min(1240px,94vw)]"
               >
                 <div className="absolute left-1/2 top-[90px] z-20 -translate-x-1/2">
                   <ConsoleCard
@@ -308,7 +319,7 @@ export default function LogoReveal() {
                       className="h-1.5 w-1.5 rounded-full bg-ep-accent ring-1 ring-ep-ink"
                       style={{ animation: 'ep-dot-pulse 1.2s ease-in-out infinite' }}
                     />
-                    HOVER TO RELEASE FOUR WORLDS
+                    HOVER TO RELEASE THREE WORLDS
                   </span>
                 </motion.div>
 
@@ -378,7 +389,7 @@ export default function LogoReveal() {
                 />
               </div>
               <motion.div animate={{ opacity: expanded ? 0 : 1 }} className="mt-2 flex justify-center">
-                <span className="ep-glass-pill">TAP TO RELEASE FOUR WORLDS</span>
+                <span className="ep-glass-pill">TAP TO RELEASE THREE WORLDS</span>
               </motion.div>
               <AnimatePresence initial={false}>
                 {expanded && (
