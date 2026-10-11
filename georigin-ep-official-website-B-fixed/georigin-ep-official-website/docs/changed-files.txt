@@ -1,0 +1,21 @@
+CODEX_HANDOFF.md
+docs/design-reference-B.png
+index.html
+public/assets/ep-v1-gameplay.jpg
+public/assets/ep-v2-design.webp
+src/App.tsx
+src/components/Footer.tsx
+src/components/Layout.tsx
+src/components/Navbar.tsx
+src/components/Reveal.tsx
+src/components/SubscribeForm.tsx
+src/components/home/DevLogTeaser.tsx
+src/components/home/GameplayVideo.tsx
+src/components/home/Hero.tsx
+src/components/home/PrototypeRoadmap.tsx
+src/lib/lenis.ts
+src/lib/site.ts
+src/pages/Devlog.tsx
+src/pages/Home.tsx
+src/styles/landing.css
+.env.example (sanitized)

@@ -27,26 +27,26 @@ jobs:
         with:
           node-version: 22
           cache: npm
-          cache-dependency-path: georigin-ep-official-website/package-lock.json
+          cache-dependency-path: georigin-ep-official-website-B-fixed/georigin-ep-official-website/package-lock.json
 
       - name: Install dependencies
-        working-directory: georigin-ep-official-website
+        working-directory: georigin-ep-official-website-B-fixed/georigin-ep-official-website
         run: npm ci
 
       - name: Build static site (frontend only)
-        working-directory: georigin-ep-official-website
+        working-directory: georigin-ep-official-website-B-fixed/georigin-ep-official-website
         run: npx vite build
 
       # GitHub Pages has no history-API fallback; serving index.html as
       # 404.html keeps deep links like /devlog/2026-07-03 working.
       - name: Add SPA fallback
-        run: cp georigin-ep-official-website/dist/public/index.html georigin-ep-official-website/dist/public/404.html
+        run: cp georigin-ep-official-website-B-fixed/georigin-ep-official-website/dist/public/index.html georigin-ep-official-website-B-fixed/georigin-ep-official-website/dist/public/404.html
 
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: georigin-ep-official-website/dist/public
+          path: georigin-ep-official-website-B-fixed/georigin-ep-official-website/dist/public
 
   deploy:
     needs: build
